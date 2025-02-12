@@ -1,0 +1,684 @@
+/* Hero Section */
+.hero {
+  background-color: #034833;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px 20px;
+  position: relative;
+}
+
+.hero-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.hero h1 {
+  color: white;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 24px;
+}
+
+.text-secondary {
+  color: #83cd20;
+  display: block;
+}
+
+.download-btn {
+  background: #83cd20;
+  color: white;
+  padding: 16px 32px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 500;
+  display: inline-block;
+  transition: background 0.3s;
+}
+
+.download-btn:hover {
+  background: #75b81d;
+}
+
+/* Types of Trips */
+.trips-section {
+  padding: 4rem 2rem;
+}
+
+.trips-section h2,
+.calculate-section h2,
+.features-section h2,
+.captain-section h2 {
+  text-align: center;
+  color: #034833;
+  font-size: 32px;
+  margin-bottom: 48px;
+}
+
+.trips-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+.trip-card {
+  flex: 1;
+  min-width: 250px;
+  max-width: 300px;
+  padding: 2rem;
+  text-align: center;
+  background: white;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.trip-card .icon {
+  background: linear-gradient(135deg, #83cd20 0%, #6ba913 100%);
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+  transition: transform 0.3s ease;
+}
+
+.trip-card .icon svg {
+  color: white;
+  font-size: 28px;
+}
+
+.trip-card h3 {
+  margin: 0;
+  font-size: 1.25rem;
+  color: #333;
+}
+
+.trip-card p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #666;
+  line-height: 1.5;
+}
+
+.trip-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.trip-card:hover .icon {
+  transform: scale(1.1);
+  box-shadow: 0 4px 15px rgba(131, 205, 32, 0.4);
+}
+
+/* Calculate Price */
+.calculate-section {
+  padding: 4rem 2rem;
+}
+
+.calculate-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4rem;
+}
+
+.price-formula {
+  background: #83cd20;
+  padding: 3.5rem;
+  border-radius: 25px;
+  color: white;
+  position: relative;
+  width: 500px;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+}
+
+.quote-mark {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 4rem;
+  font-family: serif;
+  opacity: 0.3;
+  line-height: 1;
+}
+
+.price-formula h3 {
+  font-size: 2rem;
+  margin: 0 0 1rem 0;
+  font-weight: 500;
+  min-height: 2.4em;
+}
+
+.price-formula p {
+  font-size: 1.5rem;
+  line-height: 1.6;
+  margin: 0;
+  font-weight: 400;
+  flex-grow: 1;
+  min-height: 4.8em;
+}
+
+.divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.3);
+  margin: 2rem 0;
+}
+
+.navigation-dots {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+}
+
+.dot {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: white;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  color: #83cd20;
+  transition: all 0.3s ease;
+}
+
+.dot:hover {
+  background: rgba(255, 255, 255, 0.9);
+  transform: scale(1.05);
+}
+
+.dot:active {
+  transform: scale(0.95);
+}
+
+.calculator-image {
+  border-radius: 25px;
+}
+
+/* App Features */
+.features-section {
+  padding: 4rem 2rem;
+  background: #f8f9fa;
+}
+
+.features-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+}
+
+.features-list {
+  display: flex;
+  gap: 2rem;
+  flex: 1;
+}
+
+.feature {
+  flex: 1;
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.feature:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.feature-icon {
+  background: linear-gradient(135deg, #83cd20 0%, #6ba913 100%);
+  width: 60px;
+  height: 60px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.feature-icon svg {
+  color: white;
+  font-size: 28px;
+}
+
+.feature-content h3 {
+  color: #1a1a1a;
+  margin: 0 0 0.5rem 0;
+  font-size: 1.2rem;
+}
+
+.feature-content p {
+  color: #666;
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.app-screens {
+  max-width: 300px;
+  height: auto;
+}
+
+/* Captain Section */
+.captain-section {
+  padding: 80px 20px;
+  background: white;
+}
+
+.captain-container {
+  display: flex;
+  align-items: center;
+  gap: 48px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.captain-screens {
+  max-width: 300px;
+  height: auto;
+}
+
+.benefits {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
+  flex-grow: 1;
+}
+
+.benefit {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.benefit:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.benefit-icon {
+  background: linear-gradient(135deg, #83cd20 0%, #6ba913 100%);
+  min-width: 45px;
+  height: 45px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.benefit-icon svg {
+  color: white;
+  font-size: 22px;
+}
+
+.benefit:hover .benefit-icon {
+  transform: scale(1.1);
+}
+
+.benefit-content {
+  flex: 1;
+}
+
+.benefit h3 {
+  color: #1a1a1a;
+  margin: 0 0 0.5rem 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.benefit p {
+  color: #666;
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .price-formula,
+  .calculator-image {
+    width: 400px;
+    height: 280px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .calculate-container {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .calculator-image {
+    order: 2;
+  }
+
+  .price-formula {
+    order: 1;
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 36px;
+  }
+
+  .calculate-container {
+    flex-direction: column;
+  }
+
+  .price-formula {
+    padding: 2.5rem;
+    min-height: 250px;
+  }
+
+  .price-formula h3 {
+    font-size: 1.5rem;
+  }
+
+  .price-formula p {
+    font-size: 1.2rem;
+  }
+
+  .features-container,
+  .captain-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .features-list {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .feature {
+    width: 100%;
+  }
+
+  .app-screens,
+  .captain-screens {
+    order: 1;
+    max-width: 100%;
+  }
+
+  .trips-grid {
+    gap: 1.5rem;
+  }
+
+  .trip-card {
+    min-width: 200px;
+    padding: 1.5rem;
+  }
+
+  .trip-card .icon {
+    width: 60px;
+    height: 60px;
+  }
+
+  .trip-card .icon svg {
+    font-size: 24px;
+  }
+
+  .benefits {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .benefit {
+    padding: 1.25rem;
+  }
+
+  .app-screens {
+    max-width: 250px;
+  }
+}
+
+@media (max-width: 425px) {
+  .hero {
+    min-height: 60vh;
+    padding: 20px 15px;
+  }
+
+  .hero-content h1 {
+    font-size: 24px;
+    line-height: 1.4;
+    margin-bottom: 20px;
+  }
+
+  .download-btn {
+    padding: 12px 24px;
+    font-size: 14px;
+  }
+
+  /* Types of Trips */
+  .trips-section {
+    padding: 40px 15px;
+  }
+
+  .trips-section h2,
+  .calculate-section h2,
+  .features-section h2,
+  .captain-section h2 {
+    font-size: 24px;
+    margin-bottom: 30px;
+  }
+
+  .trips-grid {
+    gap: 15px;
+    padding: 0;
+  }
+
+  .trip-card {
+    min-width: unset;
+    padding: 15px;
+  }
+
+  .trip-card .icon {
+    width: 50px;
+    height: 50px;
+  }
+
+  .trip-card .icon svg {
+    font-size: 20px;
+  }
+
+  .trip-card h3 {
+    font-size: 16px;
+  }
+
+  .trip-card p {
+    font-size: 13px;
+  }
+
+  /* Calculate Section */
+  .calculate-section {
+    padding: 40px 15px;
+  }
+
+  .calculate-container {
+    gap: 30px;
+  }
+
+  .price-formula {
+    padding: 25px;
+    min-height: unset;
+    width: 100%;
+  }
+
+  .price-formula h3 {
+    font-size: 18px;
+    min-height: unset;
+    margin-bottom: 15px;
+  }
+
+  .price-formula p {
+    font-size: 14px;
+    min-height: unset;
+  }
+
+  .dot {
+    width: 35px;
+    height: 35px;
+    font-size: 16px;
+  }
+
+  /* Features Section */
+  .features-section {
+    padding: 40px 15px;
+  }
+
+  .features-container {
+    gap: 30px;
+  }
+
+  .features-list {
+    gap: 15px;
+  }
+
+  .feature {
+    padding: 15px;
+  }
+
+  .feature-icon {
+    width: 45px;
+    height: 45px;
+  }
+
+  .feature-icon svg {
+    font-size: 20px;
+  }
+
+  .feature-content h3 {
+    font-size: 16px;
+  }
+
+  .feature-content p {
+    font-size: 13px;
+  }
+
+  /* Captain Section */
+  .captain-section {
+    padding: 40px 15px;
+  }
+
+  .captain-container {
+    gap: 30px;
+  }
+
+  .benefits {
+    gap: 15px;
+    padding: 0;
+  }
+
+  .benefit {
+    padding: 15px;
+    gap: 12px;
+  }
+
+  .benefit-icon {
+    min-width: 35px;
+    height: 35px;
+  }
+
+  .benefit-icon svg {
+    font-size: 18px;
+  }
+
+  .benefit h3 {
+    font-size: 16px;
+  }
+
+  .benefit p {
+    font-size: 13px;
+  }
+
+  .app-screens,
+  .captain-screens,
+  .calculator-image {
+    max-width: 280px;
+    height: auto;
+  }
+}
+
+@media (max-width: 375px) {
+  .hero-content h1 {
+    font-size: 22px;
+  }
+
+  .download-btn {
+    padding: 10px 20px;
+    font-size: 13px;
+  }
+
+  .trips-section h2,
+  .calculate-section h2,
+  .features-section h2,
+  .captain-section h2 {
+    font-size: 22px;
+  }
+
+  .price-formula {
+    padding: 20px;
+  }
+
+  .app-screens,
+  .captain-screens,
+  .calculator-image {
+    max-width: 250px;
+  }
+}
+
+@media (max-width: 320px) {
+  .hero-content h1 {
+    font-size: 20px;
+  }
+
+  .trips-section h2,
+  .calculate-section h2,
+  .features-section h2,
+  .captain-section h2 {
+    font-size: 20px;
+  }
+
+  .app-screens,
+  .captain-screens,
+  .calculator-image {
+    max-width: 220px;
+  }
+}

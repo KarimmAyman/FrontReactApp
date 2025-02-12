@@ -1,0 +1,189 @@
+.navbar {
+  background: white;
+  padding: 16px 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.nav-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-logo img {
+  height: 60px;
+  width: 100px;
+  width: auto;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.nav-link {
+  color: #034833;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: opacity 0.2s;
+}
+
+.nav-link:hover {
+  opacity: 0.8;
+}
+
+.nav-dropdown {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+}
+
+.nav-dropdown i {
+  font-size: 12px;
+  color: #034833;
+}
+
+.nav-auth {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.login-btn {
+  color: #034833;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 8px 16px;
+  border: 1px solid transparent;
+  border-radius: 50px;
+  transition: all 0.2s;
+}
+
+.login-btn:hover {
+  border-color: #034833;
+}
+
+.signup-btn {
+  background: #83cd20;
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 8px 24px;
+  border-radius: 50px;
+  transition: background 0.2s;
+  .navbar {
+    background: white;
+    padding: 16px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+
+  .nav-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .nav-logo img {
+    height: 40px;
+    width: auto;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+  }
+
+  .nav-link {
+    color: #034833;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: opacity 0.2s;
+  }
+
+  .nav-link:hover {
+    opacity: 0.8;
+  }
+
+  .nav-dropdown {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+  }
+
+  .nav-dropdown i {
+    font-size: 12px;
+    color: #034833;
+  }
+
+  .nav-auth {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .login-btn {
+    color: #034833;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 8px 16px;
+    border: 1px solid transparent;
+    border-radius: 50px;
+    transition: all 0.2s;
+  }
+
+  .login-btn:hover {
+    border-color: #034833;
+  }
+
+  .signup-btn {
+    background: #83cd20;
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 8px 24px;
+    border-radius: 50px;
+    transition: background 0.2s;
+  }
+
+  .signup-btn:hover {
+    background: #75b81d;
+  }
+
+  @media (max-width: 1024px) {
+    .nav-links {
+      display: none;
+    }
+  }
+}
+
+.signup-btn:hover {
+  background: #75b81d;
+}
+
+@media (max-width: 1024px) {
+  .nav-links {
+    display: none;
+  }
+}

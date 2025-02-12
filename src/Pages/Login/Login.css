@@ -1,0 +1,37 @@
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.login-page > *:not(footer) {
+  flex: 1 0 auto;
+}
+
+@media (max-width: 768px) {
+  .login-page {
+    padding: 0;
+  }
+  
+  .login-container {
+    width: 90%;
+    max-width: 400px;
+    margin: 20px auto;
+  }
+  
+  .login-form {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-container {
+    width: 95%;
+    margin: 10px auto;
+  }
+  
+  .login-form {
+    padding: 15px;
+  }
+} 
