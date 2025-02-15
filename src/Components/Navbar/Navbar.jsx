@@ -25,10 +25,13 @@ function Navbar() {
           <Link to="/offerings" className="nav-link">
             OUR OFFERINGS
           </Link>
-          <div className="nav-dropdown">
-            <span className="nav-link">ABOUT US</span>
-            <i className="fas fa-chevron-down"></i>
-          </div>
+
+          <Link to="/about" className="nav-link">
+            <div className="nav-dropdown">
+              <span className="nav-link">ABOUT US</span>
+              <i className="fas fa-chevron-down"></i>
+            </div>
+          </Link>
         </div>
 
         {/* Auth Buttons */}

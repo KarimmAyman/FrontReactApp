@@ -1,15 +1,11 @@
 import { Link } from "react-router-dom";
-import "./Footer.css";
+import "./ParentFooter.css";
 import Aoun1 from "../../assets/Aoun1.png";
-import googlePlay from "../../assets/google-play.png";
-import appStore from "../../assets/app-store.png";
 
-
-
-function Footer() {
+const HomeFooter = () => {
   return (
-    <footer className="footer">
-      <div className="footer-container">
+    <footer className="home-footer">
+      <div className="home-footer-grid">
         {/* Left Section */}
         <div className="footer-left">
           <img src={Aoun1} alt="Aoun Logo" className="footer-logo" />
@@ -19,52 +15,61 @@ function Footer() {
             app independently
           </p>
           <div className="social-links">
-            <a
-              href="https://facebook.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <a href="#">
               <i className="fab fa-facebook-f"></i>
             </a>
-            <a
-              href="https://instagram.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <a href="#">
               <i className="fab fa-instagram"></i>
             </a>
-            <a
-              href="https://twitter.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <a href="#">
               <i className="fab fa-twitter"></i>
             </a>
-            <a
-              href="https://youtube.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <i className="fab fa-youtube"></i>
+            <a href="#">
+              <i className="fab fa-linkedin"></i>
             </a>
           </div>
         </div>
 
-        {/* Center Section */}
-        <div className="footer-center">
-          <h3>Download App</h3>
-          <div className="app-downloads">
-            <a href="#" target="_blank" rel="noopener noreferrer">
-              <img src={googlePlay} alt="Get it on Google Play" />
-            </a>
-            <a href="#" target="_blank" rel="noopener noreferrer">
-              <img src={appStore} alt="Download on App Store" />
-            </a>
-          </div>
+        {/* Services Section */}
+        <div className="footer-services">
+          <h3>Services</h3>
+          <ul>
+            <li>
+              <span className="check-icon">✓</span> Ride
+            </li>
+            <li>
+              <span className="check-icon">✓</span> Drive
+            </li>
+            <li>
+              <span className="check-icon">✓</span> Find Nearby Housing
+            </li>
+            <li>
+              <span className="check-icon">✓</span> Activities & Opportunities
+            </li>
+          </ul>
         </div>
 
-        {/* Right Section */}
-        <div className="footer-right">
+        {/* Company Section */}
+        <div className="footer-company">
+          <h3>Company</h3>
+          <ul>
+            <li>
+              <Link to="/about">About us</Link>
+            </li>
+            <li>
+              <Link to="/newsroom">Newsroom</Link>
+            </li>
+            <li>
+              <Link to="/blog">Blog</Link>
+            </li>
+            <li>
+              <Link to="/offerings">Our offerings</Link>
+            </li>
+          </ul>
+        </div>
+
+        {/* Newsletter Section */}
+        <div className="footer-newsletter">
           <h3>Subscribe Our Newsletter</h3>
           <p>
             Corporate business typically refers to large-scale operations that
@@ -82,7 +87,7 @@ function Footer() {
       {/* Bottom Bar */}
       <div className="footer-bottom">
         <p>© Aoun 2024 | All Rights Reserved</p>
-        <div className="footer-links">
+        <div className="bottom-links">
           <Link to="/terms">Terms & Condition</Link>
           <Link to="/privacy">Privacy Policy</Link>
           <Link to="/help">Help center</Link>
@@ -90,6 +95,6 @@ function Footer() {
       </div>
     </footer>
   );
-}
+};
 
-export default Footer;
+export default HomeFooter;

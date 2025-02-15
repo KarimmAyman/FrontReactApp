@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
-import iPhone13Pro from "../../assets/iPhone13Pro.png";
+import mobile3 from "../../assets/3mobile.svg";
 import calculatorImage from "../../assets/calculator.png";
 import "./Home.css";
-import HomeFooter from "../../Components/Footer/HomeFooter";
+import ParentFooter from "../../Components/Footer/ParentFooter";
 import {
   MdDirectionsCar,
   MdCardTravel,
@@ -160,11 +160,7 @@ function Home() {
                 </div>
               </div>
             </div>
-            <img
-              src={iPhone13Pro}
-              alt="App Screenshots"
-              className="app-screens"
-            />
+            <img src={mobile3} alt="App Screenshots" className="app-screens" />
           </div>
         </section>
 
@@ -172,11 +168,7 @@ function Home() {
         <section className="captain-section">
           <h2>Are you captain?</h2>
           <div className="captain-container">
-            <img
-              src={iPhone13Pro}
-              alt="Captain App"
-              className="captain-screens"
-            />
+            <img src={mobile3} alt="Captain App" className="captain-screens" />
             <div className="benefits">
               <div className="benefit">
                 <div className="benefit-icon">
@@ -221,7 +213,7 @@ function Home() {
           </div>
         </section>
       </div>
-      <HomeFooter />
+      <ParentFooter />
     </>
   );
 }

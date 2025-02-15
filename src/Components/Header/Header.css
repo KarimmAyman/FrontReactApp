@@ -1,0 +1,50 @@
+.contact-container {
+  width: min(100% - 40px, 1200px);
+  margin-inline: auto;
+  padding: clamp(10px, 2vw, 20px);
+  box-sizing: border-box;
+}
+
+.contact-header {
+  background-color: #034833;
+  color: white;
+  padding: clamp(20px, 4vw, 50px);
+  border-radius: clamp(8px, 1.5vw, 15px);
+  margin-bottom: clamp(15px, 3vw, 30px);
+}
+
+.contact-header h1 {
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  margin-bottom: clamp(8px, 1.5vw, 10px);
+  line-height: 1.2;
+}
+
+/* Media Queries for different screen sizes */
+@media screen and (max-width: 768px) {
+  .contact-container {
+    margin: 0 15px;
+    padding: 15px;
+  }
+
+  .contact-header {
+    padding: 40px 15px;
+    margin-bottom: 25px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .contact-container {
+    width: min(100% - 20px, 1200px);
+  }
+
+  .contact-header {
+    text-align: center;
+  }
+}
+
+@media screen and (min-width: 2000px) {
+  .contact-container {
+    margin-inline: auto;
+    max-width: 1400px;
+  }
+}
