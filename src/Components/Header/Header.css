@@ -1,50 +1,45 @@
-.contact-container {
-  width: min(100% - 40px, 1200px);
-  margin-inline: auto;
-  padding: clamp(10px, 2vw, 20px);
-  box-sizing: border-box;
-}
-
-.contact-header {
+/* .page-header {
   background-color: #034833;
   color: white;
-  padding: clamp(20px, 4vw, 50px);
-  border-radius: clamp(8px, 1.5vw, 15px);
-  margin-bottom: clamp(15px, 3vw, 30px);
+  padding: clamp(30px, 5vw, 50px) 20px;
+  border-radius: 20px;
+  margin-bottom: 30px;
+
 }
 
-.contact-header h1 {
-  font-size: clamp(1.5rem, 4vw, 2.5rem);
-  margin-bottom: clamp(8px, 1.5vw, 10px);
-  line-height: 1.2;
+.header-content {
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-/* Media Queries for different screen sizes */
-@media screen and (max-width: 768px) {
-  .contact-container {
-    margin: 0 15px;
-    padding: 15px;
-  }
-
-  .contact-header {
-    padding: 40px 15px;
-    margin-bottom: 25px;
-  }
+.header-main h1 {
+  font-size: clamp(1.8rem, 5vw, 2.5rem);
+  margin: 0;
 }
 
-@media screen and (max-width: 480px) {
-  .contact-container {
-    width: min(100% - 20px, 1200px);
-  }
-
-  .contact-header {
-    text-align: center;
-  }
+.breadcrumb {
+  margin-bottom: 15px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-@media screen and (min-width: 2000px) {
-  .contact-container {
-    margin-inline: auto;
-    max-width: 1400px;
-  }
+.breadcrumb a {
+  color: white;
+  text-decoration: none;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
 }
+
+.breadcrumb a:hover {
+  opacity: 1;
+}
+
+.separator {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.current {
+  color: rgba(255, 255, 255, 0.8);
+} */

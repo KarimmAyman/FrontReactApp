@@ -1,16 +1,26 @@
+// import { Link } from "react-router-dom";
+// import PropTypes from "prop-types";
+// import "./Header.css";
 
-import "./Header.css";
-const Header = () => {
-  return (
-    <div className="contact-container">
-      <div className="contact-header">
-        <h1>Contact Us</h1>
-        <div className="breadcrumb">
-          <span>Home</span> &gt; <span>Contact us</span>
-        </div>
-      </div>
-    </div>
-  );
-};
+// const Header = ({ title }) => {
+//   return (
+//     <div className="page-header">
+//       <div className="header-content">
+//         <div className="breadcrumb">
+//           <Link to="/">Home</Link>
+//           <span className="separator">›</span>
+//           <span className="current">{title}</span>
+//         </div>
+//         <div className="header-main">
+//           <h1>{title}</h1>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
 
-export default Header
+// Header.propTypes = {
+//   title: PropTypes.string.isRequired,
+// };
+
+// export default Header;
