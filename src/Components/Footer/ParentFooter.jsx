@@ -1,83 +1,76 @@
 import { Link } from "react-router-dom";
 import "./ParentFooter.css";
-import Aoun1 from "../../assets/Aoun1.png";
+import Aoun1 from "../../assets/Aoun1.svg";
 
-const HomeFooter = () => {
+const ParentFooter = () => {
+  // Changed from HomeFooter to ParentFooter
   return (
-    <footer className="home-footer">
-      <div className="home-footer-grid">
-        {/* Left Section */}
-        <div className="footer-left">
-          <img src={Aoun1} alt="Aoun Logo" className="footer-logo" />
-          <p className="footer-description">
+    <footer className="aoun-footer">
+      <div className="aoun-footer-content">
+        {/* Logo Section */}
+        <div className="aoun-footer-logo-section">
+          <img src={Aoun1} alt="Aoun Logo" className="aoun-footer-logo" />
+          <p className="aoun-footer-description">
             Aoun is an online aggregator. We do not participate in transactions
             between our users, they create and manage all requests within our
             app independently
           </p>
-          <div className="social-links">
-            <a href="#">
+          <div className="aoun-footer-social">
+            <Link to="#" className="aoun-social-icon">
               <i className="fab fa-facebook-f"></i>
-            </a>
-            <a href="#">
+            </Link>
+            <Link to="#" className="aoun-social-icon">
               <i className="fab fa-instagram"></i>
-            </a>
-            <a href="#">
+            </Link>
+            <Link to="#" className="aoun-social-icon">
               <i className="fab fa-twitter"></i>
-            </a>
-            <a href="#">
+            </Link>
+            <Link to="#" className="aoun-social-icon">
               <i className="fab fa-linkedin"></i>
-            </a>
+            </Link>
           </div>
         </div>
 
         {/* Services Section */}
-        <div className="footer-services">
+        <div className="aoun-footer-section">
           <h3>Services</h3>
-          <ul>
-            <li>
-              <span className="check-icon">✓</span> Ride
-            </li>
-            <li>
-              <span className="check-icon">✓</span> Drive
-            </li>
-            <li>
-              <span className="check-icon">✓</span> Find Nearby Housing
-            </li>
-            <li>
-              <span className="check-icon">✓</span> Activities & Opportunities
-            </li>
-          </ul>
+          <div className="aoun-footer-links">
+            <Link to="#">
+              <i className="fas fa-check"></i> Ride
+            </Link>
+            <Link to="#">
+              <i className="fas fa-check"></i> Drive
+            </Link>
+            <Link to="#">
+              <i className="fas fa-check"></i> Find Nearby Housing
+            </Link>
+            <Link to="#">
+              <i className="fas fa-check"></i> Activities & Opportunities
+            </Link>
+          </div>
         </div>
 
         {/* Company Section */}
-        <div className="footer-company">
+        <div className="aoun-footer-section">
           <h3>Company</h3>
-          <ul>
-            <li>
-              <Link to="/about">About us</Link>
-            </li>
-            <li>
-              <Link to="/newsroom">Newsroom</Link>
-            </li>
-            <li>
-              <Link to="/blog">Blog</Link>
-            </li>
-            <li>
-              <Link to="/offerings">Our offerings</Link>
-            </li>
-          </ul>
+          <div className="aoun-footer-links">
+            <Link to="#">About us</Link>
+            <Link to="#">Newsroom</Link>
+            <Link to="#">Blog</Link>
+            <Link to="#">Our offerings</Link>
+          </div>
         </div>
 
         {/* Newsletter Section */}
-        <div className="footer-newsletter">
+        <div className="aoun-footer-section">
           <h3>Subscribe Our Newsletter</h3>
-          <p>
+          <p className="aoun-footer-description">
             Corporate business typically refers to large-scale operations that
             streamline services for efficiency and reliability.
           </p>
-          <div className="newsletter-form">
+          <div className="aoun-footer-subscribe">
             <input type="email" placeholder="Enter Email" />
-            <button type="submit">
+            <button type="submit" className="aoun-submit-btn">
               <i className="fas fa-arrow-right"></i>
             </button>
           </div>
@@ -85,16 +78,18 @@ const HomeFooter = () => {
       </div>
 
       {/* Bottom Bar */}
-      <div className="footer-bottom">
-        <p>© Aoun 2024 | All Rights Reserved</p>
-        <div className="bottom-links">
-          <Link to="/terms">Terms & Condition</Link>
-          <Link to="/privacy">Privacy Policy</Link>
-          <Link to="/help">Help center</Link>
+      <div className="aoun-footer-bottom">
+        <div className="aoun-footer-bottom-left">
+          © Aoun 2024 | All Rights Reserved
+        </div>
+        <div className="aoun-footer-bottom-right">
+          <Link to="#">Terms & Condition</Link>
+          <Link to="#">Privacy Policy</Link>
+          <Link to="#">Help center</Link>
         </div>
       </div>
     </footer>
   );
 };
 
-export default HomeFooter;
+export default ParentFooter;

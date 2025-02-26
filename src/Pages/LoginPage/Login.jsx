@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import logo from "../../assets/logo.png";
-import heart from "../../assets/heart.png";
-import Footer from "../../Components/Footer/Footer";
+import logo from "../../assets/mainAou.svg";
+import heart from "../../assets/heart.svg";
 import "./Login.css";
 
 function Login() {
@@ -95,7 +94,7 @@ function Login() {
               <Link to="/privacy">Privacy Policy</Link>
             </p>
 
-            <button type="submit" className="submit-button">
+            <button type="submit" className="login-button">
               Log in
             </button>
 
@@ -109,7 +108,7 @@ function Login() {
           </div>
         </div>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }

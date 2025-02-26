@@ -1,0 +1,54 @@
+.terms-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.terms-header {
+  background-color: #2d5a4d;
+  color: white;
+  padding: 40px 20px;
+  border-radius: 12px;
+  margin-bottom: 30px;
+}
+
+.terms-header h1 {
+  margin: 0;
+  font-size: 2rem;
+  color: white;
+}
+
+.terms-breadcrumb {
+  font-size: 0.9rem;
+  margin-top: 10px;
+  color: white;
+}
+
+.terms-content {
+  padding: 30px;
+  border-radius: 8px;
+}
+
+.terms-content section {
+  margin-bottom: 30px;
+}
+
+.terms-content h2 {
+  margin-bottom: 15px;
+}
+
+.terms-content p {
+  line-height: 1.6;
+  opacity: 0.8;
+  margin-bottom: 15px;
+}
+
+.terms-content ul {
+  padding-left: 20px;
+  margin-bottom: 15px;
+}
+
+.terms-content li {
+  margin-bottom: 10px;
+  line-height: 1.6;
+  opacity: 0.8;
+}

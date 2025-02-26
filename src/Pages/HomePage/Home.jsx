@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import mobile3 from "../../assets/3mobile.svg";
-import calculatorImage from "../../assets/calculator.png";
+import calculatorImage from "../../assets/calculator.svg";
 import "./Home.css";
 import ParentFooter from "../../Components/Footer/ParentFooter";
 import {

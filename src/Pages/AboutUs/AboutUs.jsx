@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import "./AboutUs.css";
-import logo from "../../assets/logo.png";
+import logo from "../../assets/mainAou.svg";
 import ParentFooter from "../../Components/Footer/ParentFooter";
 
 const AboutUs = () => {
