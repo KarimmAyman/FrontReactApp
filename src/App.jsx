@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import "./App.css";
 import Login from "./Pages/LoginPage/Login";
 import Navbar from "./Components/Navbar/Navbar";
 import Home from "./Pages/HomePage/Home";
@@ -11,12 +12,13 @@ import FAQ from "./pages/FAQ/FAQ";
 import TermsAndConditions from "./Pages/Terms/TermsAndConditions";
 import Error404 from "./Pages/Error404/Error404";
 import Privacy from "./Pages/Privacy/Privacy";
-import Properties from "./Pages/Properties/Properties";
+import Properties from "./Pages/Housing/Properties";
 import SignUp from "./Pages/SignUp/SignUp";
 import ContactInfo from "./Pages/SignUp/ContactInfo";
 import LoginInfo from "./Pages/SignUp/LoginInfo";
 import Success from "./Pages/SignUp/Success";
-import "./App.css";
+import HousingDetails from "./Pages/Housing/HouseRouting";
+import HousingPost from "./Pages/Housing/HousingPost";
 
 function App() {
   return (
@@ -35,11 +37,13 @@ function App() {
           <Route path="/terms" element={<TermsAndConditions />} />
           <Route path="*" element={<Error404 />} />
           <Route path="/Privacy" element={<Privacy />} />
-          <Route path="/properties" element={<Properties />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/contact-info" element={<ContactInfo />} />
           <Route path="/login-info" element={<LoginInfo />} />
           <Route path="/success" element={<Success />} />
+          <Route path="/properties" element={<Properties />} />
+          <Route path="/housing-details" element={<HousingDetails />} />
+          <Route path="/housing-post" element={<HousingPost />} />
         </Routes>
       </div>
     </Router>

@@ -1,0 +1,51 @@
+.advertise-features-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.advertise-features-title {
+  color: #034833;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.advertise-features-notice {
+  color: #666;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.advertise-features-section {
+  margin-bottom: 20px;
+}
+
+.advertise-features-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.advertise-features-list label {
+  width: 50%; /* عرض كل عنصر */
+  margin-bottom: 10px; /* مسافة بين العناصر */
+}
+.advInput {
+  margin-right: 10px;
+}
+
+.advertise-features-next-btn {
+  width: 100%;
+  padding: 12px;
+  background: #8cc63f;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 24px;
+}
+
+.advertise-features-next-btn:hover {
+  background: #7ab62f;
+}

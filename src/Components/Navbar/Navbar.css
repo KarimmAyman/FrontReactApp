@@ -1,6 +1,6 @@
 .navbar {
   background: white;
-  padding: 16px 0;
+  /* padding: 16px 0; */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   position: sticky;
   top: 0;
@@ -17,8 +17,8 @@
 }
 
 .nav-logo img {
-  height: 60px;
-  width: 100px;
+  height: 80px;
+  width: 80px;
   width: auto;
 }
 

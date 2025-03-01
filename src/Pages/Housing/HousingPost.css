@@ -1,0 +1,220 @@
+.housing-post {
+  /* padding: 20px; */
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.housing-post-header {
+  background-color: #2d5a4d;
+  color: white;
+  padding: 60px 20px;
+  text-align: center;
+  margin: 0 40px;
+  border-radius: 15px;
+}
+
+.housing-post-header h1 {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.breadcrumb a {
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.breadcrumb span {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 14px;
+}
+
+.stepper-container {
+  margin: 40px 0;
+}
+
+.stepper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  margin-bottom: 40px;
+}
+
+.stepper::before {
+  content: "";
+  position: absolute;
+  top: 20px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #ddd;
+  z-index: 1;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.step-number {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #666;
+}
+
+.step.active .step-number {
+  background: #034833;
+  border-color: #034833;
+  color: white;
+}
+
+.step-text {
+  font-size: 14px;
+  color: #666;
+  text-align: center;
+}
+
+.step.active .step-text {
+  color: #034833;
+  font-weight: 600;
+}
+
+.form-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.category-section h2 {
+  color: #034833;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.required-notice {
+  color: #666;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  color: #034833;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.radio-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.radio-label input[type="radio"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #034833;
+}
+
+.radio-label span {
+  color: #034833;
+  font-size: 14px;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #034833;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+input[type="text"]:focus {
+  outline: none;
+  border-color: #034833;
+}
+
+.next-btn {
+  width: 100%;
+  padding: 14px;
+  background: #83cd20;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.next-btn:hover {
+  background: #75b81d;
+}
+
+@media (max-width: 768px) {
+  .stepper {
+    overflow-x: auto;
+    padding-bottom: 20px;
+  }
+
+  .step {
+    min-width: 120px;
+  }
+
+  .step-text {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .housing-post-header {
+    padding: 30px 20px;
+  }
+
+  .housing-post-header h1 {
+    font-size: 24px;
+  }
+
+  .step {
+    min-width: 100px;
+  }
+
+  .step-number {
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
+  }
+
+  .form-container {
+    padding: 15px;
+  }
+}

@@ -102,23 +102,24 @@
   height: 40px;
   border: none;
   border-radius: 50%;
-  background: #76ff03;
+  background: #83cd20;
   color: #034833;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 0.3s ease;
+  margin-left: 10px;
 }
 
 .search-btn:hover {
-  background: #8aff24;
+  background: #75b81d;
 }
 
 /* Back Home Button */
 .back-home {
   display: inline-block;
-  background: #76ff03;
+  background: #83cd20;
   color: #034833;
   text-decoration: none;
   padding: 12px 30px;
@@ -130,7 +131,7 @@
 
 .back-home:hover {
   transform: translateY(-2px);
-  background: #8aff24;
+  background: #75b81d;
   box-shadow: 0 4px 15px rgba(118, 255, 3, 0.2);
 }
 

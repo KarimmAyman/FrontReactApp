@@ -11,9 +11,7 @@ const Privacy = () => {
           <div className="header-content">
             <h1>Privacy Policy</h1>
             <div className="breadcrumb">
-              <Link to="/">Home</Link>
-              <span>&gt;</span>
-              <span>Privacy Policy</span>
+              <Link to="/">Home</Link>/<span>Privacy Policy</span>
             </div>
           </div>
         </div>

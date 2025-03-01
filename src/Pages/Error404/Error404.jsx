@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import "./Error404.css";
 import errorImage from "../../assets/Frame.svg";
@@ -12,9 +11,7 @@ const Error404 = () => {
         <div className="header-content">
           <h1>404 Error</h1>
           <div className="breadcrumb">
-            <Link to="/">Home</Link>
-            <span>&gt;</span>
-            <span>404 Error</span>
+            <Link to="/">Home</Link>/<span>404 Error</span>
           </div>
         </div>
       </div>
