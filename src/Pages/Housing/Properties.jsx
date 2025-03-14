@@ -1,5 +1,7 @@
 import "./Properties.css";
 import ParentFooter from "../../Components/Footer/ParentFooter";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 // Import partner logos
 import segmentLogo from "../../assets/Company logo.svg";
@@ -11,6 +13,39 @@ import Building from "../../assets/build.svg";
 import resp from "../../assets/resp.svg";
 
 const Properties = () => {
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const locations = [
+    "Beach westpalm",
+    "Miami Beach",
+    "Palm Beach",
+    "Fort Lauderdale",
+  ];
+  const [filteredLocations, setFilteredLocations] = useState([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const navigate = useNavigate();
+
+  const handleSearchChange = (e) => {
+    const query = e.target.value;
+    setSearchQuery(query);
+
+    // Filter locations based on search query
+    const filtered = locations.filter((location) =>
+      location.toLowerCase().includes(query.toLowerCase())
+    );
+    setFilteredLocations(filtered);
+    setShowSuggestions(query.length > 0);
+  };
+
+  const handleLocationSelect = (location) => {
+    setSearchQuery(location);
+    setShowSuggestions(false);
+  };
+
+  const handlePropertyClick = (propertyId) => {
+    navigate(`/housing-details/${propertyId}`);
+  };
+
   return (
     <div className="properties-container">
       {/* properities Section */}
@@ -49,41 +84,110 @@ const Properties = () => {
           <span>FEATURED RENTAL</span>
         </div>
 
+        {/* Filter Toggle Button for Mobile */}
+        <button
+          className="filter-toggle-btn"
+          onClick={() => setIsFilterOpen(!isFilterOpen)}
+        >
+          Filter by <span>{isFilterOpen ? "▼" : "▲"}</span>
+        </button>
+
         <div className="properties-layout">
           {/* Filters Sidebar */}
-          <aside className="filters-sidebar">
+          <aside className={`filters-sidebar ${isFilterOpen ? "active" : ""}`}>
+            {/* Search Section */}
             <div className="filter-group">
-              <h3>Filter by</h3>
-              <div className="price-filters">
+              <h3>Search by location name</h3>
+              <div className="search-box">
+                <input
+                  type="text"
+                  placeholder="e.g. Beach westpalm"
+                  className="search-input"
+                  value={searchQuery}
+                  onChange={handleSearchChange}
+                  onFocus={() => setShowSuggestions(searchQuery.length > 0)}
+                />
+                <span className="search-icon">🔍</span>
+
+                {/* Search Suggestions */}
+                {showSuggestions && (
+                  <div className="search-suggestions">
+                    {filteredLocations.length > 0 ? (
+                      filteredLocations.map((location, index) => (
+                        <div
+                          key={index}
+                          className="suggestion-item"
+                          onClick={() => handleLocationSelect(location)}
+                        >
+                          {location}
+                        </div>
+                      ))
+                    ) : (
+                      <div className="suggestion-item no-results">
+                        No locations found
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Budget Filter */}
+            <div className="filter-group">
+              <h3>Your budget per day</h3>
+              <div className="budget-filters">
                 <label>
-                  <input type="checkbox" /> $0 - $500
+                  <input type="checkbox" /> $0 - $200
                 </label>
                 <label>
-                  <input type="checkbox" /> $501 - $1000
+                  <input type="checkbox" /> $200 - $500
                 </label>
                 <label>
-                  <input type="checkbox" /> $1001 - $1500
+                  <input type="checkbox" /> $500 - $1,000
                 </label>
                 <label>
-                  <input type="checkbox" /> $1501 - $2000
+                  <input type="checkbox" /> $1,000 - $2,000
                 </label>
                 <label>
-                  <input type="checkbox" /> $2001 - $2500
+                  <input type="checkbox" /> $2,000 - $5,000
                 </label>
               </div>
             </div>
 
+            {/* Rating Filter */}
             <div className="filter-group">
               <h3>Rating</h3>
-              <div className="rating-filters">
+              <p className="rating-text">Show only ratings more than</p>
+              <div className="rating-buttons">
+                <button className="rating-btn">1★</button>
+                <button className="rating-btn">2★</button>
+                <button className="rating-btn">2★</button>
+                <button className="rating-btn">1★</button>
+                <button className="rating-btn">1★</button>
+              </div>
+            </div>
+
+            {/* Popular Locations */}
+            <div className="filter-group">
+              <h3>Popular locations</h3>
+              <div className="location-filters">
                 <label>
-                  <input type="checkbox" /> ⭐⭐⭐⭐⭐
+                  <input type="checkbox" /> Free cancellation
                 </label>
                 <label>
-                  <input type="checkbox" /> ⭐⭐⭐⭐
+                  <input type="checkbox" /> Spa
                 </label>
                 <label>
-                  <input type="checkbox" /> ⭐⭐⭐
+                  <input type="checkbox" /> Beach front
+                </label>
+                <label>
+                  <input type="checkbox" /> Hot tub/jacuzzi
+                </label>
+                <label>
+                  <input type="checkbox" /> Book without credit card
+                </label>
+                <label>
+                  <input type="checkbox" /> No prepayment
                 </label>
               </div>
             </div>
@@ -101,7 +205,13 @@ const Properties = () => {
                   </p>
                   <div className="property-footer">
                     <span className="price">$849</span>
-                    <button className="view-more">→</button>
+                    <button
+                      className="view-more"
+                      onClick={() => handlePropertyClick(index + 1)}
+                      aria-label="View property details"
+                    >
+                      →
+                    </button>
                   </div>
                 </div>
               </div>
