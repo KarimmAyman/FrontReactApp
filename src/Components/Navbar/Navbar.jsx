@@ -26,6 +26,11 @@ function Navbar() {
             OUR OFFERINGS
           </Link>
 
+          
+          {/* <Link to="/HouseRouting" className="nav-link">HOUSE DETAILS</Link> */}
+          <Link to="/Activities" className="nav-link">ACTIVITIES</Link>
+
+
           <Link to="/about" className="nav-link">
             <div className="nav-dropdown">
               <span className="nav-link">ABOUT US</span>

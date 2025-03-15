@@ -1,0 +1,74 @@
+.singlell{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+      padding:30px ;
+      background-color: #F1F5EB;
+      border-radius: 15px;
+      border:1px #1112141A solid ;
+  }
+  .lame{
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    margin-bottom: 30px;
+  }
+  .bla{
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  
+    .cardll-info{
+      display: flex;
+      gap: 30px;
+      
+      background-color: #F1F5EB;
+      
+    }
+  
+    .cardll-des{
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+  
+    }
+  
+    .cdll-1{
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .cdll-1 p{
+      font-size: small;
+      padding: 3px;
+      background-color: #e1ecff;
+      border-radius: 7px;
+    }
+    .cdll-2{
+      display: flex;
+      gap: 18px;
+    }
+    
+    .cdll-2 i{
+      padding-right: 5px;
+    }
+  
+    .cardll-button button{
+      background-color:inherit;
+      border: 2px solid #8cd032;
+      border-radius: 7px;
+      height: 40px;
+      padding: 0px 25px 0px 25px;
+      color: #8cd032;
+      font-weight: 600;
+    }
+    .cardll-button button:hover{
+      background-color:#8cd032;
+      color: #ffffff;
+      transition: 300ms;
+    }
+    .cardll-button i{
+      padding-left: 8px;
+      color: inherit;
+    }
