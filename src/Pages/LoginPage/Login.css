@@ -143,7 +143,7 @@
   text-decoration: none;
 }
 
-.submit-button {
+.login-button {
   width: 100%;
   padding: 14px;
   background: var(--light-green);
@@ -157,7 +157,7 @@
   transition: background-color 0.2s;
 }
 
-.submit-button:hover {
+.login-button:hover {
   background-color: #75b81d;
 }
 

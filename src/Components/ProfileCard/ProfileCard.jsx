@@ -1,18 +1,18 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import "./ProfileCard.css"
-import Expert from "../../assets/Expert.svg"
+import { useState } from "react";
+import "./ProfileCard.css";
+import Expertt from "../../assets/Expertt.svg";
 
 const ProfileCard = () => {
-  const [copied, setCopied] = useState(false)
-  const phoneNumber = "+20 010 1337 9651"
+  const [copied, setCopied] = useState(false);
+  const phoneNumber = "+20 010 1337 9651";
 
   const copyToClipboard = () => {
-    navigator.clipboard.writeText(phoneNumber)
-    setCopied(true)
-    setTimeout(() => setCopied(false), 2000)
-  }
+    navigator.clipboard.writeText(phoneNumber);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
 
   return (
     <div className="profile-card">
@@ -20,7 +20,7 @@ const ProfileCard = () => {
         <div className="profile-image-container">
           {/* Leave this empty for user to add their own image */}
           <div className="profile-image-placeholder">
-            <img src={Expert} alt="Expert" />
+            <img src={Expertt} alt="Expertt" />
           </div>
         </div>
         <div className="profile-info">
@@ -52,8 +52,7 @@ const ProfileCard = () => {
         {copied ? "COPIED!" : "COPY PHONE"}
       </button>
     </div>
-  )
-}
+  );
+};
 
-export default ProfileCard
-
+export default ProfileCard;

@@ -1,0 +1,21 @@
+.success-message-container {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.success-icon {
+  font-size: 48px; /* حجم الأيقونة */
+  color: #8cc63f; /* لون الأيقونة */
+  margin-bottom: 20px; /* مسافة بين الأيقونة والنص */
+}
+
+.success-title {
+  font-size: 24px;
+  color: #034833; /* لون العنوان */
+  margin-bottom: 10px; /* مسافة بين العنوان والنص الفرعي */
+}
+
+.success-subtitle {
+  font-size: 16px;
+  color: #666; /* لون النص الفرعي */
+}

@@ -1,15 +1,13 @@
-
-.profile-image-placeholder img{
+.profile-image-placeholder img {
   width: 55px;
-  
-
 }
 
 .sticky-wrapper {
   position: sticky;
   top: 100px; /* Adjust this value to control when the card starts sticking */
-  z-index:100000000000 ; /* Ensure the card stays on top of other content */
+  z-index: 100000000000; /* Ensure the card stays on top of other content */
 }
+
 .profile-card {
   position: fixed;
   top: 300px;
@@ -24,6 +22,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 20px auto;
 }
 
 .profile-image-container {
@@ -100,4 +99,3 @@
 .copy-button:hover {
   background-color: #7ab62f;
 }
-

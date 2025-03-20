@@ -1,0 +1,315 @@
+.house-page {
+  width: 100%;
+}
+h2,
+h3,
+h4 {
+  color: #034833;
+}
+
+/* Hero Section */
+.house-hero {
+  background-color: #2d5a4d;
+  color: white;
+  padding: 40px 20px;
+  text-align: center;
+  margin: 0 20px;
+  border-radius: 15px;
+}
+
+.house-hero h1 {
+  font-size: 28px;
+  margin-bottom: 15px;
+}
+
+.breadcrumb {
+  margin-bottom: 15px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.breadcrumb a {
+  color: white;
+  text-decoration: none;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+.breadcrumb a:hover {
+  opacity: 1;
+}
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 30px auto;
+  padding: 0 15px;
+}
+.location-1 {
+  margin-top: 3px;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+.price {
+  margin-bottom: -40px;
+  display: flex;
+  gap: 3px;
+  align-items: center;
+}
+
+.price span {
+  font-size: small;
+}
+.located h2 {
+  margin-bottom: 0;
+  font-size: 24px;
+}
+.location {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+.img-sec img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  margin-top: 20px;
+  border-radius: 18px;
+}
+.img-sec {
+  position: relative;
+  width: 100%;
+}
+
+/* Add specific class names to avoid conflicts */
+.house-image-arrows {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 0 20px;
+}
+
+.house-image-arrow {
+  font-size: 200%;
+  color: #034833; /* Your green color */
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.house-image-arrow:hover {
+  color: #023724; /* Darker shade for hover */
+}
+
+/* Update your existing HTML to use these new classes */
+.arrow {
+  composes: house-image-arrows;
+}
+
+.arrow i {
+  composes: house-image-arrow;
+}
+
+.des-1 {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.des-2 {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.des {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 15px;
+}
+.des i {
+  font-size: 12px;
+}
+
+.general-information {
+  margin: 40px 0;
+}
+
+h2 {
+  color: #034833;
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+@media (min-width: 768px) {
+  .house-hero {
+    margin: 0 40px;
+    padding: 60px 20px;
+  }
+
+  .house-hero h1 {
+    font-size: 36px;
+  }
+
+  .info-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+  }
+
+  .features-container {
+    flex-direction: row;
+  }
+
+  .feature-section {
+    flex: 1;
+  }
+
+  .ex {
+    border-left: #9f9f9f 1px solid;
+    padding-left: 90px;
+  }
+
+  .img-sec img {
+    height: 500px;
+  }
+
+  .location-img img {
+    height: 400px;
+  }
+}
+
+@media (max-width: 480px) {
+  .house-hero {
+    margin: 0 10px;
+    padding: 30px 15px;
+  }
+
+  .house-hero h1 {
+    font-size: 24px;
+  }
+
+  .container {
+    width: 95%;
+    padding: 0 10px;
+  }
+
+  .located h2 {
+    font-size: 20px;
+  }
+
+  .arrow {
+    font-size: 200%;
+    padding: 0 10px;
+  }
+
+  .info-label {
+    min-width: 120px;
+    font-size: 13px;
+  }
+
+  .info-value {
+    font-size: 13px;
+  }
+
+  .feature-tag {
+    font-size: 13px;
+  }
+}
+
+.info-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 16px;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.check-icon {
+  width: 20px;
+  height: 20px;
+  color: #83cd20;
+  flex-shrink: 0;
+}
+
+.info-label {
+  color: #666;
+  min-width: 140px;
+  font-size: 14px;
+}
+
+.info-value {
+  color: #333;
+  font-weight: 500;
+  font-size: 14px;
+}
+.sp-1 {
+  color: #ff0000;
+}
+
+/* Explanation-section */
+.explanation {
+  margin-bottom: 40px;
+}
+.explanation p {
+  color: #727272;
+  line-height: 1.6;
+}
+
+/* features-section */
+
+.features-container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.feature-section {
+  width: 100%;
+}
+.feature-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.feature-tag {
+  background-color: #f3f4f6;
+  color: #333;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 14px;
+}
+
+.ex {
+  border-left: none;
+  padding-left: 0;
+}
+.ex-1 {
+  width: 80%;
+}
+
+.location-img {
+  margin: 40px 0;
+}
+.location-img img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 12px;
+}

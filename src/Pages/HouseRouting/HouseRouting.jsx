@@ -1,13 +1,19 @@
 import React from 'react'
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 import "./HouseRouting.css";
 import "../../Components/ProfileCard/ProfileCard"
 import apartment from "../../assets/apartment.svg"
-import map from "../../assets/map.svg"
+import Map from "../../assets/Map.svg"
 import ParentFooter from "../../Components/Footer/ParentFooter";
 import ProfileCard from '../../Components/ProfileCard/ProfileCard';
 
 const HouseRouting = () => {
+    useEffect(() => {
+            setTimeout(() => {
+                window.scrollTo(0, 0);
+            }, 10); 
+        }, []);
   return (
     <div className="house-page">
 <section className="house-hero">
@@ -237,7 +243,7 @@ const HouseRouting = () => {
 
     <div className="location-img">
         <h2>Location Information</h2>
-        <img src={map} alt="map"/>
+        <img src={Map} alt="map"/>
 
       </div>
       </div>
