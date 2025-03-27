@@ -3,15 +3,11 @@
 }
 
 .sticky-wrapper {
-  position: sticky;
-  top: 100px; /* Adjust this value to control when the card starts sticking */
-  z-index: 100000000000; /* Ensure the card stays on top of other content */
+  position: relative;
+  z-index: 1;
 }
 
 .profile-card {
-  position: fixed;
-  top: 300px;
-  right: 20px;
   background-color: #f5f5f0;
   border-radius: 12px;
   padding: 12px;

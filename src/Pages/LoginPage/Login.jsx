@@ -1,23 +1,41 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/useAuth";
 import logo from "../../assets/mainAou.svg";
 import heart from "../../assets/heart.svg";
 import "./Login.css";
 
 function Login() {
   const navigate = useNavigate();
+  const { login } = useAuth();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
     rememberMe: false,
   });
   const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setError("");
+    setIsLoading(true);
 
-    if (formData.email && formData.password) {
-      navigate("/");
+    try {
+      // Simulating API call (Replace with actual logic later)
+      setTimeout(() => {
+        login({
+          user: { email: formData.email },
+          token: "dummy-token",
+        });
+        navigate("/");
+        setIsLoading(false);
+      }, 1500);
+    } catch (err) {
+      console.error("Login error:", err);
+      setError("An error occurred during login. Please try again.");
+      setIsLoading(false);
     }
   };
 
@@ -39,6 +57,8 @@ function Login() {
 
           <h1 className="sign-in-title">Sign in</h1>
 
+          {error && <div className="error-message">{error}</div>}
+
           <form onSubmit={handleSubmit}>
             <div className="form-group">
               <label>Email</label>
@@ -49,6 +69,8 @@ function Login() {
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
+                required
+                disabled={isLoading}
               />
             </div>
 
@@ -62,11 +84,14 @@ function Login() {
                   name="password"
                   value={formData.password}
                   onChange={handleChange}
+                  required
+                  disabled={isLoading}
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
                   className="eye-button"
+                  disabled={isLoading}
                 >
                   👁️
                 </button>
@@ -80,6 +105,7 @@ function Login() {
                   name="rememberMe"
                   checked={formData.rememberMe}
                   onChange={handleChange}
+                  disabled={isLoading}
                 />
                 <span>Remember me</span>
               </label>
@@ -94,8 +120,12 @@ function Login() {
               <Link to="/privacy">Privacy Policy</Link>
             </p>
 
-            <button type="submit" className="login-button">
-              Log in
+            <button
+              type="submit"
+              className={`login-button ${isLoading ? "loading" : ""}`}
+              disabled={isLoading}
+            >
+              {isLoading ? "Signing in..." : "Log in"}
             </button>
 
             <p className="signup-text">
@@ -108,7 +138,6 @@ function Login() {
           </div>
         </div>
       </div>
-      {/* <Footer /> */}
     </>
   );
 }

@@ -1,44 +1,46 @@
-import React from 'react'
-import "./Card.css"
-import UP from "../../assets/UP.svg"
-import { useNavigate } from "react-router-dom";
-import Details from '../../Pages/Details/Details';
+import { Link } from "react-router-dom";
+import "./Card.css";
+import UP from "../../assets/UP.svg";
 
-
-
-const Card = () => {
-     const navigate = useNavigate();
+function Card() {
   return (
-  <>
-    <div className="singlell">
-                        <div className="cardll-info">
-    
-                        <div className="cardll-img">
-                            <img src={UP} alt="UP" />
-                        </div>
-    
-                        <div className="cardll-des">
-                            <div className="cdll-1">
-                            <h3>Senior UX Designer</h3>
-                            <p>Contract Base</p>
-                            </div>
-                            <div className="cdll-2">
-                                <p><i class="fa-solid fa-location-dot"></i>Australia</p>
-                                <p><i class="fa-solid fa-dollar"></i>$30K-$35K</p>
-                                <p><i class="fa-solid fa-calendar"></i>4 Days Remaining</p>
-                            </div>
-                        </div>
-    
-                        </div>
-                        <div className="cardll-button">
-                            <button onClick={() => navigate("/Details")}>Apply Now <i class="fa-solid fa-arrow-right"></i></button>
-    
-                        </div>
-                        
-                    </div>
-
-  </>
-  )
+    <div className="job-card">
+      <div className="job-card-content">
+        <div className="job-card-info">
+          <div className="job-card-logo">
+            <img src={UP} alt="Company Logo" />
+          </div>
+          <div className="job-card-details">
+            <div className="job-card-header">
+              <h3 className="job-title">Senior UX Designer</h3>
+              <div className="job-status">
+                <span className="status-badge">Live</span>
+              </div>
+            </div>
+            <div className="job-card-meta">
+              <div className="job-meta-item">
+                <i className="fas fa-map-marker-alt"></i>
+                <span>Australia</span>
+              </div>
+              <div className="job-meta-item">
+                <i className="fas fa-dollar-sign"></i>
+                <span>$30K-$35K</span>
+              </div>
+              <div className="job-meta-item">
+                <i className="fas fa-calendar"></i>
+                <span>4 days remaining</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="job-card-action">
+          <Link to="/Details" className="job-view-btn">
+            View Details <i className="fas fa-arrow-right"></i>
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
 }
 
-export default Card
+export default Card;

@@ -1,0 +1,267 @@
+.profile-page {
+  background-color: #f8f9fa;
+  min-height: 100vh;
+  padding: 20px 0;
+}
+
+.profile-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  gap: 20px;
+}
+
+/* Sidebar Styles */
+.profile-sidebar {
+  width: 250px;
+  flex-shrink: 0;
+}
+
+.user-profile {
+  background-color: white;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.user-avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: #e0e0e0;
+  margin: 0 auto 15px;
+  overflow: hidden;
+}
+
+.avatar-placeholder {
+  width: 100%;
+  height: 100%;
+  background-color: #ccc;
+}
+
+.user-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.user-info h2 {
+  margin: 0 0 5px;
+  color: #034833;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.user-info p {
+  margin: 0;
+  color: #666;
+  font-size: 14px;
+}
+
+.profile-tabs {
+  background-color: white;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.tab-item {
+  padding: 15px 20px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  color: #333;
+  font-weight: 500;
+}
+
+.tab-item:hover {
+  background-color: #f8f9fa;
+}
+
+.tab-item.active {
+  background-color: #f0f7e6;
+  color: #034833;
+  font-weight: 600;
+  border-left: 3px solid #83cd20;
+}
+
+/* Content Styles */
+.profile-content {
+  flex: 1;
+  background-color: white;
+  border-radius: 12px;
+  padding: 25px;
+}
+
+.section-title {
+  color: #034833;
+  font-size: 22px;
+  margin-top: 0;
+  margin-bottom: 25px;
+  font-weight: 600;
+}
+
+.posts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.post-card {
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.post-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.post-left {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.post-icon {
+  flex-shrink: 0;
+}
+
+.icon-bg {
+  width: 50px;
+  height: 50px;
+  background-color: #83cd20;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+.post-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.post-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.post-header h3 {
+  margin: 0;
+  font-size: 16px;
+  color: #333;
+}
+
+.status-badge {
+  font-size: 12px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.status-badge.live {
+  background-color: #e6f7d9;
+  color: #83cd20;
+}
+
+.status-badge.canceled {
+  background-color: #ffebee;
+  color: #f44336;
+}
+
+.post-details {
+  display: flex;
+  gap: 15px;
+}
+
+.detail-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #666;
+  font-size: 13px;
+}
+
+.detail-item i {
+  color: #83cd20;
+  font-size: 12px;
+}
+
+.view-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background-color: transparent;
+  border: 1px solid #83cd20;
+  color: #83cd20;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 14px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.view-button:hover {
+  background-color: #83cd20;
+  color: white;
+}
+
+.notification-empty {
+  padding: 30px;
+  text-align: center;
+  color: #777;
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+  .profile-container {
+    flex-direction: column;
+  }
+  
+  .profile-sidebar {
+    width: 100%;
+  }
+  
+  .profile-tabs {
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .tab-item.active {
+    border-left: none;
+    border-bottom: 3px solid #83cd20;
+  }
+}
+
+@media (max-width: 768px) {
+  .post-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+  
+  .view-button {
+    align-self: flex-end;
+  }
+}
+
+@media (max-width: 480px) {
+  .post-left {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .post-details {
+    flex-direction: column;
+    gap: 5px;
+  }
+}

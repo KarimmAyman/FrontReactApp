@@ -84,14 +84,14 @@ const AboutUs = () => {
                 𝕏
               </a>
               <a href="#" className="social-link">
-                yt
+                ▶
               </a>
             </div>
           </div>
         </div>
       </section>
 
-      <ParentFooter/>
+      <ParentFooter />
     </div>
   );
 };

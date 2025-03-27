@@ -9,11 +9,7 @@ const SignUp = () => {
     fullName: "",
     email: "",
     gender: "",
-    dateOfBirth: {
-      month: "",
-      day: "",
-      year: "",
-    },
+    age: "",
   });
 
   const handleInputChange = (e) => {
@@ -24,17 +20,6 @@ const SignUp = () => {
     }));
   };
 
-  const handleDateChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      dateOfBirth: {
-        ...prev.dateOfBirth,
-        [name]: value,
-      },
-    }));
-  };
-
   const handleNext = (e) => {
     e.preventDefault();
 
@@ -42,15 +27,12 @@ const SignUp = () => {
       !formData.fullName ||
       !formData.email ||
       !formData.gender ||
-      !formData.dateOfBirth.month ||
-      !formData.dateOfBirth.day ||
-      !formData.dateOfBirth.year
+      !formData.age
     ) {
       alert("Please fill in all required fields");
       return;
     }
 
-    // Store data and navigate to contact info page
     localStorage.setItem("signupData", JSON.stringify(formData));
     navigate("/contact-info");
   };
@@ -59,15 +41,12 @@ const SignUp = () => {
     <div className="signup-container">
       <div className="signup-card">
         <img src={logo} alt="Logo" className="signup-logo" />
-
         <h1>Sign up</h1>
         <p className="signup-description">
           Our platform is a multifunctional hub that connects users with
           seamless transportation, housing, and activity services. Whether you
           need a ride, a place to stay, or exciting experiences, our app ensures
-          convenience, security, and efficiency. With user-friendly navigation
-          and verified listings, we make everyday mobility and exploration
-          effortless.
+          convenience, security, and efficiency.
         </p>
 
         <div className="progress-steps">
@@ -143,53 +122,17 @@ const SignUp = () => {
           </div>
 
           <div className="form-group">
-            <label>*What is your date of birth?</label>
-            <div className="date-selects">
-              <select
-                name="month"
-                value={formData.dateOfBirth.month}
-                onChange={handleDateChange}
-                required
-              >
-                <option value="">Month</option>
-                {Array.from({ length: 12 }, (_, i) => (
-                  <option key={i + 1} value={i + 1}>
-                    {i + 1}
-                  </option>
-                ))}
-              </select>
-
-              <select
-                name="day"
-                value={formData.dateOfBirth.day}
-                onChange={handleDateChange}
-                required
-              >
-                <option value="">Day</option>
-                {Array.from({ length: 31 }, (_, i) => (
-                  <option key={i + 1} value={i + 1}>
-                    {i + 1}
-                  </option>
-                ))}
-              </select>
-
-              <select
-                name="year"
-                value={formData.dateOfBirth.year}
-                onChange={handleDateChange}
-                required
-              >
-                <option value="">Year</option>
-                {Array.from({ length: 100 }, (_, i) => {
-                  const year = new Date().getFullYear() - i;
-                  return (
-                    <option key={year} value={year}>
-                      {year}
-                    </option>
-                  );
-                })}
-              </select>
-            </div>
+            <label htmlFor="age">*What is your age?</label>
+            <input
+              type="number"
+              id="age"
+              name="age"
+              value={formData.age}
+              onChange={handleInputChange}
+              required
+              min="1"
+              placeholder="Enter your age"
+            />
           </div>
 
           <button type="submit" className="next-btn">

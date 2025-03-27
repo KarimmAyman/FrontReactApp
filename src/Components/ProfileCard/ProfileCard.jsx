@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import "./ProfileCard.css";
-import Expertt from "../../assets/Expertt.svg";
+import Expert from "../../assets/Expert.svg";
 
 const ProfileCard = () => {
   const [copied, setCopied] = useState(false);
@@ -20,7 +20,7 @@ const ProfileCard = () => {
         <div className="profile-image-container">
           {/* Leave this empty for user to add their own image */}
           <div className="profile-image-placeholder">
-            <img src={Expertt} alt="Expertt" />
+            <img src={Expert} alt="Expert" />
           </div>
         </div>
         <div className="profile-info">
