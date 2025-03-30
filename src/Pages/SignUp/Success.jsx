@@ -29,7 +29,7 @@ const Success = () => {
         localStorage.removeItem("signupData");
 
         // Navigate to profile page
-        navigate("/profile");
+        navigate("/");
       }
     }, 3000);
 

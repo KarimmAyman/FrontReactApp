@@ -1,49 +1,49 @@
-import  { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useAuth } from '../../context/useAuth';
-import './Profile.css';
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { useAuth } from "../../context/useAuth";
+import "./Profile.css";
 
 const Profile = () => {
   const { user } = useAuth();
-  const [activeTab, setActiveTab] = useState('Housing');
-  
+  const [activeTab, setActiveTab] = useState("Housing");
+
   // Example data - in a real app, this would come from an API
   const userPosts = [
     {
       id: 1,
-      type: 'Apartment for sale',
-      status: 'Live',
-      location: 'Australia',
+      type: "Apartment for sale",
+      status: "Live",
+      location: "Australia",
       bedrooms: 4,
-      area: '128 m²'
+      area: "128 m²",
     },
     {
       id: 2,
-      type: 'Apartment for sale',
-      status: 'Canceled',
-      location: 'Australia', 
+      type: "Apartment for sale",
+      status: "Canceled",
+      location: "Australia",
       bedrooms: 4,
-      area: '128 m²'
-    }
+      area: "128 m²",
+    },
   ];
-  
+
   const userOpportunities = [
     {
       id: 1,
-      type: 'Apartment for sale',
-      status: 'Canceled',
-      location: 'Australia',
+      type: "Apartment for sale",
+      status: "Canceled",
+      location: "Australia",
       bedrooms: 4,
-      area: '128 m²'
+      area: "128 m²",
     },
     {
       id: 2,
-      type: 'Senior UX Designer',
-      status: 'Live',
-      location: 'Australia',
-      salary: '$30K-$35K',
-      daysRemaining: 4
-    }
+      type: "Senior UX Designer",
+      status: "Live",
+      location: "Australia",
+      salary: "$30K-$35K",
+      daysRemaining: 4,
+    },
   ];
 
   return (

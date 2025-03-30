@@ -5,11 +5,16 @@ import logo from "../../assets/mainAou.svg";
 
 const SignUp = () => {
   const navigate = useNavigate();
+  const [error, setError] = useState("");
   const [formData, setFormData] = useState({
-    fullName: "",
+    firstName: "",
+    lastName: "",
     email: "",
     gender: "",
     age: "",
+    address: "",
+    city: "",
+    country: "Egypt",
   });
 
   const handleInputChange = (e) => {
@@ -18,22 +23,44 @@ const SignUp = () => {
       ...prev,
       [name]: value,
     }));
+    setError(""); // Clear error when user types
   };
 
   const handleNext = (e) => {
     e.preventDefault();
 
     if (
-      !formData.fullName ||
+      !formData.firstName ||
+      !formData.lastName ||
       !formData.email ||
       !formData.gender ||
       !formData.age
     ) {
-      alert("Please fill in all required fields");
+      setError("Please fill in all required fields");
       return;
     }
 
-    localStorage.setItem("signupData", JSON.stringify(formData));
+    // التحقق من صحة البريد الإلكتروني
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      setError("Please enter a valid email address");
+      return;
+    }
+
+    // التحقق من العمر
+    const age = parseInt(formData.age);
+    if (age < 5 || age > 120) {
+      setError("Age must be between 5 and 120 years");
+      return;
+    }
+
+    // تخزين البيانات مع fullName
+    const dataToSave = {
+      ...formData,
+      fullName: `${formData.firstName} ${formData.lastName}`,
+    };
+
+    localStorage.setItem("signupData", JSON.stringify(dataToSave));
     navigate("/contact-info");
   };
 
@@ -44,9 +71,7 @@ const SignUp = () => {
         <h1>Sign up</h1>
         <p className="signup-description">
           Our platform is a multifunctional hub that connects users with
-          seamless transportation, housing, and activity services. Whether you
-          need a ride, a place to stay, or exciting experiences, our app ensures
-          convenience, security, and efficiency.
+          seamless transportation, housing, and activity services.
         </p>
 
         <div className="progress-steps">
@@ -65,18 +90,33 @@ const SignUp = () => {
         </div>
 
         <form onSubmit={handleNext} className="signup-form">
+          {error && <div className="error-message">{error}</div>}
+
           <p className="required-text">*All fields required unless noted</p>
 
           <div className="form-group">
-            <label htmlFor="fullName">*Full name</label>
+            <label htmlFor="firstName">*First Name</label>
             <input
               type="text"
-              id="fullName"
-              name="fullName"
-              value={formData.fullName}
+              id="firstName"
+              name="firstName"
+              value={formData.firstName}
               onChange={handleInputChange}
               required
-              placeholder="Enter your full name"
+              placeholder="Enter your first name"
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="lastName">*Last Name</label>
+            <input
+              type="text"
+              id="lastName"
+              name="lastName"
+              value={formData.lastName}
+              onChange={handleInputChange}
+              required
+              placeholder="Enter your last name"
             />
           </div>
 
@@ -130,8 +170,35 @@ const SignUp = () => {
               value={formData.age}
               onChange={handleInputChange}
               required
-              min="1"
+              min="5"
+              max="120"
               placeholder="Enter your age"
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="address">*Address</label>
+            <input
+              type="text"
+              id="address"
+              name="address"
+              value={formData.address}
+              onChange={handleInputChange}
+              required
+              placeholder="Enter your address"
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="city">*City</label>
+            <input
+              type="text"
+              id="city"
+              name="city"
+              value={formData.city}
+              onChange={handleInputChange}
+              required
+              placeholder="Enter your city"
             />
           </div>
 

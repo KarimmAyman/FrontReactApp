@@ -105,7 +105,7 @@ const ProfileSettings = () => {
     <div className="profile-settings-page">
       <div className="profile-settings-container">
         <div className="profile-settings-content">
-          <div className="profile-header">
+          <div className="profile-user">
             <div className="profile-image-container">
               <div className="profile-image">
                 {profileImage ? (

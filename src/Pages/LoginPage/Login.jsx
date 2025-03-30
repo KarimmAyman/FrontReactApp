@@ -22,19 +22,58 @@ function Login() {
     setError("");
     setIsLoading(true);
 
+    // تجهيز البيانات للإرسال
+    const loginData = {
+      email: formData.email,
+      password: formData.password,
+    };
+
     try {
-      // Simulating API call (Replace with actual logic later)
-      setTimeout(() => {
-        login({
-          user: { email: formData.email },
-          token: "dummy-token",
-        });
-        navigate("/");
-        setIsLoading(false);
-      }, 1500);
+      const response = await fetch("/api/Accounts/Login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(loginData),
+      });
+
+      const data = await response.json();
+      console.log("Login response:", data);
+
+      if (!response.ok || data.successed === false) {
+        // معالجة الأخطاء
+        if (data.errors && Array.isArray(data.errors)) {
+          throw new Error(data.errors[0]);
+        } else if (data.message) {
+          throw new Error(data.message);
+        }
+        throw new Error("Invalid credentials");
+      }
+
+      // نجاح تسجيل الدخول
+      login({
+        user: {
+          email: formData.email,
+          // يمكن إضافة المزيد من بيانات المستخدم من الرد
+          name: data.fullName || "",
+          token: data.token || "",
+        },
+        token: data.token,
+      });
+
+      // حفظ التوكن في localStorage إذا تم اختيار "تذكرني"
+      if (formData.rememberMe && data.token) {
+        localStorage.setItem("token", data.token);
+      }
+
+      // التوجيه للصفحة الرئيسية
+      navigate("/");
     } catch (err) {
       console.error("Login error:", err);
-      setError("An error occurred during login. Please try again.");
+      setError(
+        err.message || "An error occurred during login. Please try again."
+      );
+    } finally {
       setIsLoading(false);
     }
   };
@@ -45,6 +84,8 @@ function Login() {
       ...prev,
       [name]: type === "checkbox" ? checked : value,
     }));
+    // مسح رسالة الخطأ عند الكتابة
+    if (error) setError("");
   };
 
   return (

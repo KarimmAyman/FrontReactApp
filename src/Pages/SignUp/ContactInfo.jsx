@@ -5,16 +5,16 @@ import logo from "../../assets/mainAou.svg";
 
 const ContactInfo = () => {
   const navigate = useNavigate();
+  const [error, setError] = useState("");
   const [formData, setFormData] = useState({
     phoneNumber: "",
+    address: "",
   });
 
-  // Get existing data from localStorage
   useEffect(() => {
     const savedData = localStorage.getItem("signupData");
     if (!savedData) {
-      navigate("/signup"); // Redirect if no basic info
-      return;
+      navigate("/signup");
     }
   }, [navigate]);
 
@@ -24,22 +24,28 @@ const ContactInfo = () => {
       ...prev,
       [name]: value,
     }));
+    setError("");
   };
 
   const handleNext = (e) => {
     e.preventDefault();
 
-    if (!formData.phoneNumber) {
-      alert("Please enter your phone number");
+    if (!formData.phoneNumber || !formData.address) {
+      setError("Please fill in all required fields");
       return;
     }
 
-    // Get existing data and merge with new data
+    // التحقق من صحة رقم الهاتف
+    const phoneRegex = /^\d{11}$/;
+    if (!phoneRegex.test(formData.phoneNumber)) {
+      setError("Please enter a valid phone number (11 digits)");
+      return;
+    }
+
+    // تحديث البيانات المخزنة
     const existingData = JSON.parse(localStorage.getItem("signupData") || "{}");
     const updatedData = { ...existingData, ...formData };
     localStorage.setItem("signupData", JSON.stringify(updatedData));
-
-    // Navigate to login info page
     navigate("/login-info");
   };
 
@@ -47,15 +53,10 @@ const ContactInfo = () => {
     <div className="signup-container">
       <div className="signup-card">
         <img src={logo} alt="Logo" className="signup-logo" />
-
         <h1>Sign up</h1>
         <p className="signup-description">
           Our platform is a multifunctional hub that connects users with
-          seamless transportation, housing, and activity services. Whether you
-          need a ride, a place to stay, or exciting experiences, our app ensures
-          convenience, security, and efficiency. With user-friendly navigation
-          and verified listings, we make everyday mobility and exploration
-          effortless.
+          seamless transportation, housing, and activity services.
         </p>
 
         <div className="progress-steps">
@@ -74,21 +75,12 @@ const ContactInfo = () => {
         </div>
 
         <form onSubmit={handleNext} className="signup-form">
-          <div className="form-sections">
-            <div className="section completed">
-              <span className="section-dot"></span>
-              <span className="section-text">Basic info</span>
-            </div>
-            <div className="section active">
-              <span className="section-dot"></span>
-              <span className="section-text">Contact info</span>
-            </div>
-          </div>
+          {error && <div className="error-message">{error}</div>}
 
-          <p className="required-text">*All fields required unless noted.</p>
+          <p className="required-text">*All fields required unless noted</p>
 
           <div className="form-group">
-            <label htmlFor="phoneNumber">*Phone number</label>
+            <label htmlFor="phoneNumber">*Phone Number</label>
             <input
               type="tel"
               id="phoneNumber"
@@ -97,6 +89,21 @@ const ContactInfo = () => {
               onChange={handleInputChange}
               required
               placeholder="Enter your phone number"
+              pattern="\d{11}"
+              title="Please enter a valid 11-digit phone number"
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="address">*Address</label>
+            <input
+              type="text"
+              id="address"
+              name="address"
+              value={formData.address}
+              onChange={handleInputChange}
+              required
+              placeholder="Enter your address"
             />
           </div>
 

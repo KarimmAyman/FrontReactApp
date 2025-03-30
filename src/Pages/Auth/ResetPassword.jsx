@@ -1,48 +1,84 @@
 import { useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
-import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const ResetPassword = () => {
+  const [email, setEmail] = useState("");
   const [newPassword, setNewPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [confirmedNewPassword, setConfirmedNewPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
-  const location = useLocation();
-  const { email, otp } = location.state || {};
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (newPassword !== confirmPassword) {
-      alert("Passwords do not match");
+    setIsLoading(true);
+    setErrorMessage("");
+
+    // ✅ التحقق من صحة المدخلات
+    if (!email.includes("@")) {
+      setErrorMessage("Please enter a valid email.");
+      setIsLoading(false);
       return;
     }
 
-    setIsLoading(true);
+    if (newPassword.length < 6) {
+      setErrorMessage("Password must be at least 6 characters.");
+      setIsLoading(false);
+      return;
+    }
+
+    if (newPassword !== confirmedNewPassword) {
+      setErrorMessage("Passwords do not match.");
+      setIsLoading(false);
+      return;
+    }
+
+    console.log("🔹 Sending request:", {
+      email,
+      newPassword,
+      confirmedNewPassword,
+    });
+
     try {
-      const response = await axios.post(
-        "https://studentpathapitest.runasp.net/api/Accounts/reset-password-with-otp",
+      const response = await fetch(
+        "http://localhost:5174/api/Accounts/reset-password-with-otp",
         {
-          email,
-          otp,
-          newPassword,
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify({ email, newPassword, confirmedNewPassword }),
         }
       );
 
-      if (response.data) {
-        // نجاح العملية
-        navigate("/success", {
-          state: {
-            message: "Password reset successfully!",
-            redirectTo: "/login",
-          },
-        });
+      let data;
+      try {
+        data = await response.json();
+      } catch (jsonError) {
+        throw new Error("Unexpected server response.");
       }
+
+      console.log("🔹 Server Response:", data);
+
+      if (!response.ok) {
+        const errorMsg =
+          data.message ||
+          data.errors?.[Object.keys(data.errors)[0]]?.[0] ||
+          "Error resetting password.";
+        throw new Error(errorMsg);
+      }
+
+      alert("✅ Password reset successfully!");
+      navigate("/success", {
+        state: {
+          message: "Password reset successfully!",
+          redirectTo: "/login",
+        },
+      });
     } catch (error) {
-      console.error("Error:", error);
-      alert(
-        error.response?.data?.message ||
-          "Error resetting password. Please try again."
-      );
+      console.error("❌ API Error:", error);
+      setErrorMessage(error.message);
     } finally {
       setIsLoading(false);
     }
@@ -51,7 +87,17 @@ const ResetPassword = () => {
   return (
     <div className="reset-password-container">
       <h2>Reset Password</h2>
+      {errorMessage && <p className="error-message">{errorMessage}</p>}
       <form onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label>Email</label>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+        </div>
         <div className="form-group">
           <label>New Password</label>
           <input
@@ -66,8 +112,8 @@ const ResetPassword = () => {
           <label>Confirm Password</label>
           <input
             type="password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
+            value={confirmedNewPassword}
+            onChange={(e) => setConfirmedNewPassword(e.target.value)}
             required
             minLength={6}
           />
