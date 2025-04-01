@@ -13,7 +13,11 @@ function UserDropdown() {
     <div className="user-dropdown">
       <div className="user-header">
         <div className="user-image">
-          <img src="../../assets/Aoun1.svg" alt="" />
+          {user?.profileImage ? (
+            <img src={user.profileImage} alt={user?.name} />
+          ) : (
+            <div className="avatar-placeholder"></div>
+          )}
         </div>
         <div className="user-info">
           <h3>{user?.name || "Mohamed Kord"}</h3>

@@ -51,23 +51,22 @@ function Login() {
       }
 
       // نجاح تسجيل الدخول
-      login({
-        user: {
-          email: formData.email,
-          // يمكن إضافة المزيد من بيانات المستخدم من الرد
-          name: data.fullName || "",
-          token: data.token || "",
-        },
-        token: data.token,
-      });
+      const userData = {
+        email: formData.email,
+        name: data.fullName || "",
+        token: data.token || "",
+        // إضافة أي معلومات أخرى تحتاجها
+      };
+
+      login(userData);
 
       // حفظ التوكن في localStorage إذا تم اختيار "تذكرني"
       if (formData.rememberMe && data.token) {
         localStorage.setItem("token", data.token);
       }
 
-      // التوجيه للصفحة الرئيسية
-      navigate("/");
+      // التوجيه للصفحة الشخصية
+      navigate("/profile", { state: { user: userData } });
     } catch (err) {
       console.error("Login error:", err);
       setError(

@@ -1,11 +1,15 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useAuth } from "../../context/useAuth";
 import "./Profile.css";
 
 const Profile = () => {
   const { user } = useAuth();
+  const location = useLocation();
   const [activeTab, setActiveTab] = useState("Housing");
+
+  // استخدام بيانات المستخدم المرسلة
+  const userData = location.state?.user || user;
 
   // Example data - in a real app, this would come from an API
   const userPosts = [

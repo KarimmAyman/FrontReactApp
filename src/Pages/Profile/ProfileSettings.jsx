@@ -11,9 +11,7 @@ const ProfileSettings = () => {
     email: "",
     gender: "Male",
     phoneNumber: "",
-    birthMonth: "August",
-    birthDay: "6",
-    birthYear: "2003",
+    age: "",
     timeZone: "",
     theme: "light",
     language: "Eng",
@@ -27,9 +25,7 @@ const ProfileSettings = () => {
         email: user.email || "mohamedkord27@gmail.com",
         gender: user.gender || "Male",
         phoneNumber: user.phoneNumber || "",
-        birthMonth: user.birthMonth || "August",
-        birthDay: user.birthDay || "6",
-        birthYear: user.birthYear || "2003",
+        age: user.age || "",
         timeZone: user.timeZone || "",
         theme: user.theme || "light",
         language: user.language || "Eng",
@@ -46,7 +42,6 @@ const ProfileSettings = () => {
     });
   };
 
-  // Keep your existing handleImageUpload function
   const handleImageUpload = (e) => {
     if (e.target.files && e.target.files[0]) {
       const reader = new FileReader();
@@ -63,7 +58,9 @@ const ProfileSettings = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Make sure your updateUserProfile function exists in your AuthContext
+    const currentYear = new Date().getFullYear();
+    const birthYear = currentYear - parseInt(formData.age, 10);
+
     if (updateUserProfile) {
       updateUserProfile({
         ...user,
@@ -71,9 +68,7 @@ const ProfileSettings = () => {
         email: formData.email,
         gender: formData.gender,
         phoneNumber: formData.phoneNumber,
-        birthMonth: formData.birthMonth,
-        birthDay: formData.birthDay,
-        birthYear: formData.birthYear,
+        birthYear: birthYear.toString(),
         timeZone: formData.timeZone,
         theme: formData.theme,
         language: formData.language,
@@ -82,24 +77,6 @@ const ProfileSettings = () => {
     }
     setIsEditMode(false);
   };
-
-  const months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
-
-  const days = Array.from({ length: 31 }, (_, i) => (i + 1).toString());
-  const years = Array.from({ length: 50 }, (_, i) => (2023 - i).toString());
 
   return (
     <div className="profile-settings-page">
@@ -180,60 +157,28 @@ const ProfileSettings = () => {
             </div>
 
             <div className="form-row">
-              <div className="form-group date-group">
-                <label>Date of birth</label>
-                <div className="date-inputs">
-                  <select
-                    name="birthMonth"
-                    value={formData.birthMonth}
-                    onChange={handleInputChange}
-                    disabled={!isEditMode}
-                  >
-                    {months.map((month) => (
-                      <option key={month} value={month}>
-                        {month}
-                      </option>
-                    ))}
-                  </select>
-                  <select
-                    name="birthDay"
-                    value={formData.birthDay}
-                    onChange={handleInputChange}
-                    disabled={!isEditMode}
-                  >
-                    {days.map((day) => (
-                      <option key={day} value={day}>
-                        {day}
-                      </option>
-                    ))}
-                  </select>
-                  <select
-                    name="birthYear"
-                    value={formData.birthYear}
-                    onChange={handleInputChange}
-                    disabled={!isEditMode}
-                  >
-                    {years.map((year) => (
-                      <option key={year} value={year}>
-                        {year}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              </div>
               <div className="form-group">
-                <label>Time Zone</label>
-                <select
-                  name="timeZone"
-                  value={formData.timeZone}
+                <label>Age</label>
+                <input
+                  type="number"
+                  name="age"
+                  value={formData.age}
                   onChange={handleInputChange}
                   disabled={!isEditMode}
-                >
-                  <option value="">Your First Name</option>
-                  <option value="GMT+2">GMT+2 (Cairo)</option>
-                  <option value="GMT+3">GMT+3 (Riyadh)</option>
-                  <option value="GMT+0">GMT+0 (London)</option>
-                </select>
+                  placeholder="Enter your age"
+                />
+              </div>
+            </div>
+
+            <div className="form-row">
+              <div className="form-group">
+                <label>Profile Image</label>
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={handleImageUpload}
+                  disabled={!isEditMode}
+                />
               </div>
             </div>
 
