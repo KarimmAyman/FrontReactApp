@@ -75,6 +75,11 @@ const ProfileSettings = () => {
         profileImage: profileImage || user?.profileImage,
       });
     }
+    console.log("Updated user profile:", {
+      name: formData.fullName,
+      email: formData.email,
+      token: user.token, // التأكد من وجود الـ token هنا
+    });
     setIsEditMode(false);
   };
 

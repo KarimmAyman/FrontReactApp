@@ -6,7 +6,7 @@ export function AuthProvider({ children }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState(null);
 
-  // Check for stored user data when component mounts
+  // التحقق من وجود بيانات مخزنة عند تحميل التطبيق
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
     const storedAuth = localStorage.getItem("isAuthenticated");
@@ -18,17 +18,17 @@ export function AuthProvider({ children }) {
   }, []);
 
   const login = (userData) => {
+    console.log("Logging in user:", userData);
     setIsAuthenticated(true);
     setUser(userData);
-    // Store in localStorage
     localStorage.setItem("user", JSON.stringify(userData));
     localStorage.setItem("isAuthenticated", "true");
   };
 
   const logout = () => {
+    console.log("Logging out user");
     setIsAuthenticated(false);
     setUser(null);
-    // Clear localStorage
     localStorage.removeItem("user");
     localStorage.removeItem("isAuthenticated");
   };

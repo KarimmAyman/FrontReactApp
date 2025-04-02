@@ -32,6 +32,9 @@ import LandingPage from "./Pages/Landing/LandingPage";
 import { AuthProvider } from "./context/AuthContext";
 import ProfileSettings from "./Pages/Profile/ProfileSettings";
 import Profile from "./Pages/Profile/Profile";
+import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+import PublicRoute from "./components/PublicRoute/PublicRoute";
+
 function App() {
   return (
     <AuthProvider>
@@ -39,38 +42,234 @@ function App() {
         <div className="app">
           <Navbar />
           <Routes>
-            <Route path="/home" element={<Home />} />
+            {/* الصفحات العامة (غير محمية) */}
             <Route path="/" element={<LandingPage />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/about" element={<AboutUs />} />
-            <Route path="/success-story" element={<SuccessStory />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/blog" element={<Blog />} />
-            <Route path="/team" element={<Team />} />
-            <Route path="/faq" element={<FAQ />} />
-            <Route path="/terms" element={<TermsAndConditions />} />
-            <Route path="/privacy" element={<Privacy />} />
-            <Route path="/signup" element={<SignUp />} />
-            <Route path="/contact-info" element={<ContactInfo />} />
-            <Route path="/login-info" element={<LoginInfo />} />
-            <Route path="/success" element={<Success />} />
-            <Route path="/activities" element={<Activities />} />
-            <Route path="/dess" element={<Dess />} />
-            <Route path="/details" element={<Details />} />
-            <Route path="/post" element={<Post />} />
-            <Route path="/last" element={<Last />} />
-            <Route path="/opportunities" element={<Opportunities />} />
-            <Route path="/properties" element={<Properties />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/profile-settings" element={<ProfileSettings />} />
+            <Route
+              path="/login"
+              element={
+                <PublicRoute>
+                  <Login />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="/signup"
+              element={
+                <PublicRoute>
+                  <SignUp />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="/forgot-password"
+              element={
+                <PublicRoute>
+                  <ForgotPassword />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="/verify-otp"
+              element={
+                <PublicRoute>
+                  <VerifyOTP />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="/reset-password"
+              element={
+                <PublicRoute>
+                  <ResetPassword />
+                </PublicRoute>
+              }
+            />
+
+            {/* الصفحات المحمية */}
+            <Route
+              path="/home"
+              element={
+                <ProtectedRoute>
+                  <Home />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/about"
+              element={
+                <ProtectedRoute>
+                  <AboutUs />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/success-story"
+              element={
+                <ProtectedRoute>
+                  <SuccessStory />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/contact"
+              element={
+                <ProtectedRoute>
+                  <Contact />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/blog"
+              element={
+                <ProtectedRoute>
+                  <Blog />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/team"
+              element={
+                <ProtectedRoute>
+                  <Team />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/faq"
+              element={
+                <ProtectedRoute>
+                  <FAQ />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/terms"
+              element={
+                <ProtectedRoute>
+                  <TermsAndConditions />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/privacy"
+              element={
+                <ProtectedRoute>
+                  <Privacy />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/contact-info"
+              element={
+                <ProtectedRoute>
+                  <ContactInfo />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/login-info"
+              element={
+                <ProtectedRoute>
+                  <LoginInfo />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/success"
+              element={
+                <ProtectedRoute>
+                  <Success />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/activities"
+              element={
+                <ProtectedRoute>
+                  <Activities />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/dess"
+              element={
+                <ProtectedRoute>
+                  <Dess />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/details"
+              element={
+                <ProtectedRoute>
+                  <Details />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/post"
+              element={
+                <ProtectedRoute>
+                  <Post />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/last"
+              element={
+                <ProtectedRoute>
+                  <Last />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/opportunities"
+              element={
+                <ProtectedRoute>
+                  <Opportunities />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/properties"
+              element={
+                <ProtectedRoute>
+                  <Properties />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/profile"
+              element={
+                <ProtectedRoute>
+                  <Profile />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/profile-settings"
+              element={
+                <ProtectedRoute>
+                  <ProfileSettings />
+                </ProtectedRoute>
+              }
+            />
             <Route
               path="/housing-details/:propertyId"
-              element={<HousingDetails />}
+              element={
+                <ProtectedRoute>
+                  <HousingDetails />
+                </ProtectedRoute>
+              }
             />
-            <Route path="/housing-post" element={<HousingPost />} />
-            <Route path="/forgot-password" element={<ForgotPassword />} />
-            <Route path="/verify-otp" element={<VerifyOTP />} />
-            <Route path="/reset-password" element={<ResetPassword />} />
+            <Route
+              path="/housing-post"
+              element={
+                <ProtectedRoute>
+                  <HousingPost />
+                </ProtectedRoute>
+              }
+            />
             <Route path="*" element={<Error404 />} />
           </Routes>
         </div>

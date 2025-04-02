@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Link, useLocation } from "react-router-dom";
 import { useAuth } from "../../context/useAuth";
 import "./Profile.css";
@@ -10,6 +11,7 @@ const Profile = () => {
 
   // استخدام بيانات المستخدم المرسلة
   const userData = location.state?.user || user;
+  const navigate = useNavigate();
 
   // Example data - in a real app, this would come from an API
   const userPosts = [
@@ -49,7 +51,12 @@ const Profile = () => {
       daysRemaining: 4,
     },
   ];
-
+  const isAuth = localStorage.getItem("isAuthenticated");
+  useEffect(() => {
+    if (!isAuth) {
+      navigate("/login");
+    }
+  }, [isAuth]);
   return (
     <div className="profile-page">
       <div className="profile-container">
