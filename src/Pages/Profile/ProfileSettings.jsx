@@ -18,10 +18,19 @@ const ProfileSettings = () => {
   });
   const [isEditMode, setIsEditMode] = useState(false);
 
+  const getInitials = (name) => {
+    if (!name) return "U";
+    const names = name.split(" ");
+    if (names.length >= 2) {
+      return (names[0][0] + names[1][0]).toUpperCase();
+    }
+    return name.substring(0, 2).toUpperCase();
+  };
+
   useEffect(() => {
     if (user) {
       setFormData({
-        fullName: user.name || "Mohamed Kord",
+        fullName: user.userName || "Mohamed Kord",
         email: user.email || "mohamedkord27@gmail.com",
         gender: user.gender || "Male",
         phoneNumber: user.phoneNumber || "",
@@ -30,7 +39,7 @@ const ProfileSettings = () => {
         theme: user.theme || "light",
         language: user.language || "Eng",
       });
-      setProfileImage(user.profileImage || null);
+      setProfileImage(user.imgUrl || null);
     }
   }, [user]);
 
@@ -91,11 +100,17 @@ const ProfileSettings = () => {
             <div className="profile-image-container">
               <div className="profile-image">
                 {profileImage ? (
-                  <img src={profileImage} alt={formData.fullName} />
+                  <img
+                    src={profileImage}
+                    alt={formData.fullName}
+                    onError={(e) => {
+                      e.target.src =
+                        "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y";
+                    }}
+                  />
                 ) : (
                   <div className="image-placeholder">
-                    {formData.fullName &&
-                      formData.fullName.charAt(0).toUpperCase()}
+                    {getInitials(formData.fullName)}
                   </div>
                 )}
                 <div className="status-indicator"></div>
@@ -145,7 +160,7 @@ const ProfileSettings = () => {
                 >
                   <option value="Male">Male</option>
                   <option value="Female">Female</option>
-                  <option value="Other">Other</option>
+                  {/* <option value="Other">Other</option> */}
                 </select>
               </div>
               <div className="form-group">

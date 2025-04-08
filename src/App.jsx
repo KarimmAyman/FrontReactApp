@@ -161,25 +161,25 @@ function App() {
             <Route
               path="/contact-info"
               element={
-                <ProtectedRoute>
+                <PublicRoute>
                   <ContactInfo />
-                </ProtectedRoute>
+                </PublicRoute>
               }
             />
             <Route
               path="/login-info"
               element={
-                <ProtectedRoute>
+                <PublicRoute>
                   <LoginInfo />
-                </ProtectedRoute>
+                </PublicRoute>
               }
             />
             <Route
               path="/success"
               element={
-                <ProtectedRoute>
+                <PublicRoute>
                   <Success />
-                </ProtectedRoute>
+                </PublicRoute>
               }
             />
             <Route

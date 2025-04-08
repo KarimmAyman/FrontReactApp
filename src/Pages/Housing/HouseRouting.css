@@ -313,3 +313,48 @@ h2 {
   object-fit: cover;
   border-radius: 12px;
 }
+
+.post-housing-button-container {
+  margin: 20px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.post-housing-btn {
+  background: #83cd20;
+  color: white;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.post-housing-btn i {
+  font-size: 18px;
+}
+
+.post-housing-btn:hover {
+  background: #75b81d;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.post-housing-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Make sure the button container has space */
+.house-hero-Housing.Details {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}

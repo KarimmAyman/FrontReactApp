@@ -40,17 +40,14 @@ const ResetPassword = () => {
     });
 
     try {
-      const response = await fetch(
-        "http://localhost:5174/api/Accounts/reset-password-with-otp",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-          },
-          body: JSON.stringify({ email, newPassword, confirmedNewPassword }),
-        }
-      );
+      const response = await fetch(`/api/Accounts/reset-password-with-otp`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({ email, newPassword, confirmedNewPassword }),
+      });
 
       let data;
       try {

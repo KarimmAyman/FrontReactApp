@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./HouseRouting.css";
 import "../../Components/ProfileCard/ProfileCard";
 import apartment from "../../assets/apartment.svg";
@@ -7,6 +7,12 @@ import ParentFooter from "../../Components/Footer/ParentFooter";
 import ProfileCard from "../../Components/ProfileCard/ProfileCard";
 
 const HouseRouting = () => {
+  const navigate = useNavigate();
+
+  const handlePostHousing = () => {
+    navigate("/housing-post");
+  };
+
   return (
     <div className="house-page">
       <section className="house-hero">
@@ -53,6 +59,12 @@ const HouseRouting = () => {
             </div>
           </div>
           <ProfileCard />
+          <div className="post-housing-button-container">
+            <button className="post-housing-btn" onClick={handlePostHousing}>
+              <i className="fa-solid fa-plus"></i>
+              Post New Housing
+            </button>
+          </div>
         </section>
         <section className="info">
           <div className="general-information">

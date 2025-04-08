@@ -13,15 +13,24 @@ function UserDropdown() {
     <div className="user-dropdown">
       <div className="user-header">
         <div className="user-image">
-          {user?.profileImage ? (
-            <img src={user.profileImage} alt={user?.name} />
+          {user?.imgUrl ? (
+            <img
+              src={user.imgUrl}
+              alt={user?.userName || "User"}
+              onError={(e) => {
+                e.target.src =
+                  "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y";
+              }}
+            />
           ) : (
-            <div className="avatar-placeholder"></div>
+            <div className="avatar-placeholder">
+              {user?.userName ? user.userName[0].toUpperCase() : "U"}
+            </div>
           )}
         </div>
         <div className="user-info">
-          <h3>{user?.name || "Mohamed Kord"}</h3>
-          <p>{user?.email || "mor@gmail.com"}</p>
+          <h3>{user?.userName || "Guest User"}</h3>
+          <p>{user?.email || "noemail@example.com"}</p>
         </div>
       </div>
 

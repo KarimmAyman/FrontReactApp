@@ -1,104 +1,115 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Link, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import { useAuth } from "../../context/useAuth";
 import "./Profile.css";
+
+const dummyPosts = [
+  {
+    id: 1,
+    type: "Apartment for sale",
+    status: "Live",
+    location: "Australia",
+    bedrooms: 4,
+    area: "128 m²",
+  },
+  {
+    id: 2,
+    type: "Apartment for sale",
+    status: "Canceled",
+    location: "Australia",
+    bedrooms: 4,
+    area: "128 m²",
+  },
+];
+
+const dummyOpportunities = [
+  {
+    id: 1,
+    type: "Apartment for sale",
+    status: "Canceled",
+    location: "Australia",
+    bedrooms: 4,
+    area: "128 m²",
+  },
+  {
+    id: 2,
+    type: "Senior UX Designer",
+    status: "Live",
+    location: "Australia",
+    salary: "$30K-$35K",
+    daysRemaining: 4,
+  },
+];
+
+const ProfileTabs = ({ activeTab, setActiveTab }) => (
+  <div className="profile-tabs">
+    {["Housing", "Opportunities", "Notifications"].map((tab) => (
+      <div
+        key={tab}
+        className={`tab-item ${activeTab === tab ? "active" : ""}`}
+        onClick={() => setActiveTab(tab)}
+      >
+        {tab}
+      </div>
+    ))}
+  </div>
+);
 
 const Profile = () => {
   const { user } = useAuth();
   const location = useLocation();
-  const [activeTab, setActiveTab] = useState("Housing");
-
-  // استخدام بيانات المستخدم المرسلة
-  const userData = location.state?.user || user;
   const navigate = useNavigate();
+  const [activeTab, setActiveTab] = useState("Housing");
+  const [userPosts] = useState(dummyPosts);
+  const [userOpportunities] = useState(dummyOpportunities);
 
-  // Example data - in a real app, this would come from an API
-  const userPosts = [
-    {
-      id: 1,
-      type: "Apartment for sale",
-      status: "Live",
-      location: "Australia",
-      bedrooms: 4,
-      area: "128 m²",
-    },
-    {
-      id: 2,
-      type: "Apartment for sale",
-      status: "Canceled",
-      location: "Australia",
-      bedrooms: 4,
-      area: "128 m²",
-    },
-  ];
+  // دالة لإنشاء الأحرف الأولى من الاسم
+  const getInitials = (name) => {
+    if (!name) return "U";
+    const names = name.split(" ");
+    if (names.length >= 2) {
+      return (names[0][0] + names[1][0]).toUpperCase();
+    }
+    return name.substring(0, 2).toUpperCase();
+  };
 
-  const userOpportunities = [
-    {
-      id: 1,
-      type: "Apartment for sale",
-      status: "Canceled",
-      location: "Australia",
-      bedrooms: 4,
-      area: "128 m²",
-    },
-    {
-      id: 2,
-      type: "Senior UX Designer",
-      status: "Live",
-      location: "Australia",
-      salary: "$30K-$35K",
-      daysRemaining: 4,
-    },
-  ];
+  const userData = location.state?.user || user;
   const isAuth = localStorage.getItem("isAuthenticated");
+
   useEffect(() => {
     if (!isAuth) {
       navigate("/login");
     }
-  }, [isAuth]);
+  }, [isAuth, navigate]);
+
   return (
     <div className="profile-page">
       <div className="profile-container">
         <div className="profile-sidebar">
           <div className="user-profile">
             <div className="user-avatar">
-              {user?.profileImage ? (
-                <img src={user.profileImage} alt={user?.name} />
+              {userData?.imgUrl ? (
+                <img
+                  src={userData.imgUrl}
+                  alt={userData?.userName || "Profile"}
+                  onError={(e) => {
+                    e.target.src =
+                      "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y";
+                  }}
+                />
               ) : (
-                <div className="avatar-placeholder"></div>
+                <div className="avatar-placeholder">
+                  {getInitials(userData?.userName)}
+                </div>
               )}
             </div>
             <div className="user-info">
-              <h2>{user?.name || "Mohamed Kord"}</h2>
-              <p>{user?.email || "mohamedkord27@gmail.com"}</p>
+              <h2>{userData?.userName || "Mohamed Kord"}</h2>
+              <p>{userData?.email || "mohamedkord27@gmail.com"}</p>
             </div>
           </div>
 
-          <div className="profile-tabs">
-            <div
-              className={`tab-item ${activeTab === "Housing" ? "active" : ""}`}
-              onClick={() => setActiveTab("Housing")}
-            >
-              Housing
-            </div>
-            <div
-              className={`tab-item ${
-                activeTab === "Opportunities" ? "active" : ""
-              }`}
-              onClick={() => setActiveTab("Opportunities")}
-            >
-              Opportunities
-            </div>
-            <div
-              className={`tab-item ${
-                activeTab === "Notifications" ? "active" : ""
-              }`}
-              onClick={() => setActiveTab("Notifications")}
-            >
-              Notifications
-            </div>
-          </div>
+          <ProfileTabs activeTab={activeTab} setActiveTab={setActiveTab} />
         </div>
 
         <div className="profile-content">
@@ -177,38 +188,38 @@ const Profile = () => {
                             <i className="fas fa-map-marker-alt"></i>
                             <span>{post.location}</span>
                           </div>
-                          {post.bedrooms ? (
+                          {post.bedrooms && (
                             <div className="detail-item">
                               <i className="fas fa-bed"></i>
                               <span>{post.bedrooms}</span>
                             </div>
-                          ) : null}
-                          {post.area ? (
+                          )}
+                          {post.area && (
                             <div className="detail-item">
                               <i className="fas fa-ruler-combined"></i>
                               <span>{post.area}</span>
                             </div>
-                          ) : null}
-                          {post.salary ? (
+                          )}
+                          {post.salary && (
                             <div className="detail-item">
                               <i className="fas fa-dollar-sign"></i>
                               <span>{post.salary}</span>
                             </div>
-                          ) : null}
-                          {post.daysRemaining ? (
+                          )}
+                          {post.daysRemaining && (
                             <div className="detail-item">
                               <i className="fas fa-calendar"></i>
                               <span>{post.daysRemaining} Days Remaining</span>
                             </div>
-                          ) : null}
+                          )}
                         </div>
                       </div>
                     </div>
                     <Link
                       to={
-                        post.type.includes("Apartment")
+                        post.type.toLowerCase().includes("apartment")
                           ? `/housing-details/${post.id}`
-                          : `/Details/`
+                          : `/details/${post.id}`
                       }
                       className="view-button"
                     >
