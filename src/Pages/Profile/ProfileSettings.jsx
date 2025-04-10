@@ -4,7 +4,7 @@ import ParentFooter from "../../Components/Footer/ParentFooter";
 import "./ProfileSettings.css";
 
 const ProfileSettings = () => {
-  const { user, updateUserProfile } = useAuth();
+  const { user, storedUserId } = useAuth();
   const [profileImage, setProfileImage] = useState(null);
   const [formData, setFormData] = useState({
     fullName: "",
@@ -64,30 +64,77 @@ const ProfileSettings = () => {
   const toggleEditMode = () => {
     setIsEditMode(!isEditMode);
   };
-
+  console.log(user);
   const handleSubmit = (e) => {
     e.preventDefault();
-    const currentYear = new Date().getFullYear();
-    const birthYear = currentYear - parseInt(formData.age, 10);
 
-    if (updateUserProfile) {
-      updateUserProfile({
-        ...user,
-        name: formData.fullName,
-        email: formData.email,
-        gender: formData.gender,
-        phoneNumber: formData.phoneNumber,
-        birthYear: birthYear.toString(),
-        timeZone: formData.timeZone,
-        theme: formData.theme,
-        language: formData.language,
-        profileImage: profileImage || user?.profileImage,
-      });
+    // Validate age
+    const age = parseInt(formData.age, 10);
+    if (isNaN(age) || age < 18 || age > 100) {
+      alert("Age must be between 18 and 100");
+      return;
     }
+
+    // Validate phone number
+    if (!formData.phoneNumber || formData.phoneNumber.trim() === "") {
+      alert("Phone number is required.");
+      return;
+    }
+
+    // Validate user ID
+    if (!storedUserId) {
+      alert("User ID is missing.");
+      return;
+    }
+
+    // Validate full name
+    if (!formData.fullName || formData.fullName.trim() === "") {
+      alert("Full name (UserName) is required.");
+      return;
+    }
+
+    if (isEditMode) {
+      fetch(`/api/User/EditUser/${storedUserId}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${user.token}`,
+        },
+        body: JSON.stringify({
+          Id: storedUserId,
+          UserName: formData.fullName,
+          Gender: +formData.gender,
+          PhoneNumber: formData.phoneNumber,
+          Age: age,
+          TimeZone: formData.timeZone,
+          Theme: formData.theme,
+          Language: formData.language,
+          ImgUrl: "",
+          ProfileImage: profileImage || user?.profileImage,
+        }),
+      })
+        .then((response) => {
+          if (!response.ok) {
+            return response.json().then((err) => {
+              console.error("Validation errors:", err.errors);
+              throw new Error("Validation failed.");
+            });
+          }
+          return response.json();
+        })
+        .then((data) => {
+          console.log("User profile updated successfully:", data);
+          setIsEditMode(false);
+        })
+        .catch((error) => {
+          console.error("Error updating user profile:", error);
+        });
+    }
+
     console.log("Updated user profile:", {
       name: formData.fullName,
       email: formData.email,
-      token: user.token, // التأكد من وجود الـ token هنا
+      token: user.token, // Ensure token is here
     });
     setIsEditMode(false);
   };

@@ -6,6 +6,7 @@ import { jwtDecode } from "jwt-decode";
 export function AuthProvider({ children }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState(null);
+  const [storedUserId, setstoredUser] = useState(null);
 
   // دالة لفك التوكن
   const decodedToken = (token) => {
@@ -38,7 +39,7 @@ export function AuthProvider({ children }) {
     const storedUser = localStorage.getItem("user");
     const storedAuth = localStorage.getItem("isAuthenticated");
     const storedUserID = JSON.parse(localStorage.getItem("userid"));
-
+    setstoredUser(storedUserID);
     if (storedUser && storedAuth === "true") {
       setUser(JSON.parse(storedUser));
       setIsAuthenticated(true);
@@ -80,7 +81,9 @@ export function AuthProvider({ children }) {
   };
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, user, login, logout }}>
+    <AuthContext.Provider
+      value={{ isAuthenticated, user, login, logout, storedUserId }}
+    >
       {children}
     </AuthContext.Provider>
   );
