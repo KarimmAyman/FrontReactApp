@@ -8,6 +8,8 @@ import cloudflairLogo from "../../assets/Company logo4.svg";
 import reg1 from "../../assets/Rectangle 2738.svg";
 import reg2 from "../../assets/Rectangle 2739.svg";
 import reg3 from "../../assets/Rectangle 2765.svg";
+import illustration from "../../assets/Illustration.svg";
+import testimonialImage from "../../assets/man.svg";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
 import ParentFooter from "../../Components/Footer/ParentFooter";
 
@@ -50,10 +52,7 @@ const LandingPage = () => {
         <section className="services-section" id="services">
           <h2>Our Services</h2>
           <div className="services-container">
-            <div
-              className="service-card"
-              onClick={() => navigate("/home")}
-            >
+            <div className="service-card" onClick={() => navigate("/home")}>
               <div className="service-icon">
                 <i className="fas fa-car"></i>
               </div>
@@ -210,7 +209,7 @@ const LandingPage = () => {
           <h2>STATISTICS</h2>
           <div className="stats-layout">
             <div className="stats-image">
-              {/* Placeholder for the image on the left */}
+              <img src={illustration} alt="Statistics illustration" />
             </div>
             <div className="statistics-container">
               <div className="statistics-heading">
@@ -287,16 +286,18 @@ const LandingPage = () => {
         <section className="testimonial-section" id="testimonials">
           <div className="testimonial-container">
             <div className="testimonial-image">
-              <img src="/images/testimonial.jpg" alt="Testimonial" />
+              <img src={testimonialImage} alt="Student Testimonial" />
             </div>
             <div className="testimonial-content">
               <p className="testimonial-text">
-                &ldquo;Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Voluptatum, quisquam. Lorem ipsum dolor sit amet consectetur
-                adipisicing elit.&rdquo;
+                &ldquo;Aoun has been a game-changer in my university life! I
+                found perfect accommodation near campus, use the app daily for
+                rides, and have benefited greatly from their educational
+                activities. It's truly an all-in-one solution for every
+                student's needs!&rdquo;
               </p>
               <button className="testimonial-btn">
-                Learn more{" "}
+                Learn More
                 <i
                   className="fas fa-arrow-right"
                   style={{ marginLeft: "8px" }}

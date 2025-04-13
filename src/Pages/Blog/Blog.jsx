@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import "./Blog.css"
+import "./Blog.css";
 
 // Import your blog images
 import Rectangle from "../../assets/Rectangle.svg";
@@ -13,93 +13,102 @@ const Blog = () => {
   const blogPosts = [
     {
       id: 1,
-      title: "Wonders of Ancient Civilizations: A Journey Through Egypt",
-      image: Rectangle,
+      title: "How Aoun Makes Student Housing Search Easier",
+      image:
+        "https://images.unsplash.com/photo-1527689368864-3a821dbccc34?w=800&h=500&fit=crop",
       excerpt:
-        "Explore the magnificent pyramids, mysterious hieroglyphs, and rich cultural heritage of ancient Egypt. Discover how this remarkable civilization shaped human history and continues to fascinate modern minds.",
+        "Discover how Aoun's platform simplifies finding the perfect student accommodation. Learn about our verification system, smart filters, and how we connect students with trusted housing options.",
       date: "March 15, 2024",
       readTime: "5 min read",
-      category: "History",
+      category: "Platform Guide",
     },
     {
       id: 2,
-      title: "The Future of Transportation: Flying Cars and Beyond",
-      image: Rectangle,
+      title: "Success Stories: Finding Housing Through Aoun",
+      image:
+        "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&h=500&fit=crop",
       excerpt:
-        "From autonomous vehicles to flying taxis, discover how transportation technology is evolving rapidly. Learn about the innovations that will revolutionize how we move in the coming decades.",
+        "Real stories from students who found their ideal accommodation using Aoun. From Cairo University to Ain Shams, hear how students transformed their university housing experience.",
       date: "March 14, 2024",
       readTime: "4 min read",
-      category: "Technology",
+      category: "Success Stories",
     },
     {
       id: 3,
-      title: "Sustainable Living: Small Changes, Big Impact",
-      image: Rectangle,
+      title: "Safety First: Aoun's Verification Process",
+      image:
+        "https://images.unsplash.com/photo-1516321497487-e288fb19713f?w=800&h=500&fit=crop",
       excerpt:
-        "Learn practical ways to reduce your environmental footprint while maintaining a modern lifestyle. From energy conservation to waste reduction, discover how small changes add up to significant impact.",
+        "Understanding how Aoun verifies listings and landlords to ensure student safety. Learn about our security measures and tips for safe housing searches.",
       date: "March 13, 2024",
       readTime: "6 min read",
-      category: "Lifestyle",
+      category: "Safety",
     },
     {
       id: 4,
-      title: "Digital Nomads: Working from Paradise",
-      image: Rectangle,
+      title: "Finding Roommates Through Aoun",
+      image:
+        "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&h=500&fit=crop",
       excerpt:
-        "Explore the growing trend of digital nomadism and how technology enables professionals to work from anywhere in the world. Get tips on remote work and maintaining work-life balance.",
+        "Tips for using Aoun's roommate matching features effectively. How to create an attractive profile and connect with compatible roommates for shared housing.",
       date: "March 12, 2024",
       readTime: "7 min read",
-      category: "Work",
+      category: "Roommates",
     },
     {
       id: 5,
-      title: "The Art of Mindful Living in a Digital Age",
-      image: Rectangle,
+      title: "Budget-Friendly Housing Options on Aoun",
+      image:
+        "https://images.unsplash.com/photo-1554995207-c18c203602cb?w=800&h=500&fit=crop",
       excerpt:
-        "Navigate the challenges of staying present and mindful in our increasingly connected world. Discover practical techniques for digital wellness and mental health.",
+        "Guide to finding affordable student housing using Aoun's platform. Learn about different price ranges, shared options, and how to filter listings within your budget.",
       date: "March 11, 2024",
       readTime: "5 min read",
-      category: "Wellness",
+      category: "Budgeting",
     },
     {
       id: 6,
-      title: "Urban Farming: Growing Food in the City",
-      image: Rectangle,
+      title: "Aoun's Guide to Different Housing Types",
+      image:
+        "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800&h=500&fit=crop",
       excerpt:
-        "Learn how urban dwellers are transforming rooftops and small spaces into productive gardens. Get started with your own urban farming project and join the local food movement.",
+        "Compare different housing options available on Aoun: private apartments, shared rooms, university dorms, and more. Find what suits your needs and preferences.",
       date: "March 10, 2024",
       readTime: "6 min read",
-      category: "Sustainability",
+      category: "Housing Types",
     },
     {
       id: 7,
-      title: "Artificial Intelligence in Everyday Life",
-      image: Rectangle,
+      title: "Using Aoun's Advanced Search Features",
+      image:
+        "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=800&h=500&fit=crop",
       excerpt:
-        "Discover how AI is quietly revolutionizing our daily routines, from smart home devices to personalized recommendations. Understand the benefits and challenges of this transformative technology.",
+        "Master Aoun's search tools to find your perfect student housing. Learn about filters, sorting options, and how to save your favorite listings for later.",
       date: "March 9, 2024",
       readTime: "5 min read",
-      category: "Technology",
+      category: "Platform Tips",
     },
     {
       id: 8,
-      title: "The Rise of Virtual Reality Tourism",
-      image: Rectangle,
+      title: "Housing Near Top Egyptian Universities",
+      image:
+        "https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?w=800&h=500&fit=crop",
       excerpt:
-        "Experience world wonders from your living room through VR technology. Learn how virtual tourism is making travel more accessible and environmentally friendly.",
+        "Explore Aoun's listings near major universities. Find accommodation options near Cairo University, Ain Shams, Alexandria University, and other institutions.",
       date: "March 8, 2024",
       readTime: "4 min read",
-      category: "Travel",
+      category: "Location Guide",
     },
     {
       id: 9,
-      title: "Traditional Crafts in the Modern World",
-      image: Rectangle,
+      title: "From Search to Move-In: Complete Guide",
+      image:
+        "https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=800&h=500&fit=crop",
       excerpt:
-        "Explore how artisans are preserving ancient crafts while adapting to contemporary markets. Discover the intersection of tradition and innovation in craftsmanship.",
+        "Step-by-step guide to using Aoun: from creating your profile to finalizing your housing agreement. Everything you need to know about the process.",
       date: "March 7, 2024",
       readTime: "6 min read",
-      category: "Culture",
+      category: "Process Guide",
     },
   ];
 

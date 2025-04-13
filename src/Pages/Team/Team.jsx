@@ -6,59 +6,60 @@ const Team = () => {
   const teamMembers = [
     {
       id: 1,
-      name: "Jane Cooper",
-      position: "Production Artist",
-      image: "/path-to-image.jpg",
+      name: "Michael Anderson",
+      position: "Frontend Developer",
+      image:
+        "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=500",
     },
     {
       id: 2,
-      name: "Savannah Nguyen",
-      position: "Art Director",
-      image: "/path-to-image.jpg",
+      name: "Sarah Johnson",
+      position: "UI/UX Designer",
+      image:
+        "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=500",
     },
     {
-      id: 2,
-      name: "Savannah Nguyen",
-      position: "Art Director",
-      image: "/path-to-image.jpg",
+      id: 3,
+      name: "David Wilson",
+      position: "Backend Developer",
+      image:
+        "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=500",
     },
     {
-      id: 2,
-      name: "Savannah Nguyen",
-      position: "Art Director",
-      image: "/path-to-image.jpg",
+      id: 4,
+      name: "Emma Thompson",
+      position: "Project Manager",
+      image:
+        "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=500",
     },
     {
-      id: 2,
-      name: "Savannah Nguyen",
-      position: "Art Director",
-      image: "/path-to-image.jpg",
+      id: 5,
+      name: "James Mitchell",
+      position: "Software Engineer",
+      image:
+        "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=500",
     },
     {
-      id: 2,
-      name: "Savannah Nguyen",
-      position: "Art Director",
-      image: "/path-to-image.jpg",
+      id: 6,
+      name: "Rachel Chen",
+      position: "App Developer",
+      image:
+        "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=500",
     },
     {
-      id: 2,
-      name: "Savannah Nguyen",
-      position: "Art Director",
-      image: "/path-to-image.jpg",
+      id: 7,
+      name: "Rachel Chen",
+      position: "App Developer",
+      image:
+        "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=500",
     },
     {
-      id: 2,
-      name: "Savannah Nguyen",
-      position: "Art Director",
-      image: "/path-to-image.jpg",
+      id: 8,
+      name: "Rachel Chen",
+      position: "App Developer",
+      image:
+        "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=500",
     },
-    {
-      id: 2,
-      name: "Savannah Nguyen",
-      position: "Art Director",
-      image: "/path-to-image.jpg",
-    },
-    // Add more team members...
   ];
 
   return (
@@ -68,7 +69,7 @@ const Team = () => {
           <div className="breadcrumb">
             <Link to="/">Home</Link> / Team
           </div>
-          <h1>Team</h1>
+          <h1>Our Team</h1>
         </div>
       </section>
 
