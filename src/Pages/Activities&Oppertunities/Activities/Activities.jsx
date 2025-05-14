@@ -1,17 +1,33 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Activities.css";
 import UP from "../../../assets/UP.svg";
 import Illustration from "../../../assets/Illustration.svg";
 import ParentFooter from "../../../Components/Footer/ParentFooter";
+import { getAllJobs } from "../../../ApiServices/JobService.js"
 
 const Activities = () => {
   const navigate = useNavigate();
+  const [jobs, setJobs] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     setTimeout(() => {
       window.scrollTo(0, 0);
     }, 20);
+
+    const fetchJobs = async () => {
+      try {
+        const data = await getAllJobs();
+        setJobs(data);
+      } catch (error) {
+        console.error("Error fetching jobs:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchJobs();
   }, []);
 
   return (
@@ -83,37 +99,43 @@ const Activities = () => {
         </div>
 
         <div className="opportunities-list">
-          {[1, 2, 3].map((item) => (
-            <div className="opportunity-card" key={item}>
-              <div className="card-info">
-                <div className="card-img">
-                  <img src={UP} alt="Company Logo" />
+          {loading ? (
+            <p>Loading opportunities...</p>
+          ) : (
+            jobs.map((job) => (
+              <div className="opportunity-card" key={job.id}>
+                <div className="card-info">
+                  <div className="card-img">
+                    <img src={UP} alt="Company Logo" />
+                  </div>
+                  <div className="card-des">
+                    <div className="cd-1">
+                      <h3>{job.title}</h3>
+                      <p>{job.isActive ? "Live" : "Expired"}</p>
+                    </div>
+                    <div className="cd-2">
+                      <p>
+                        <i className="fas fa-map-marker-alt"></i> {job.location}
+                      </p>
+                      <p>
+                        <i className="fas fa-dollar-sign"></i> {job.minSalary} -{" "}
+                        {job.maxSalary}
+                      </p>
+                      <p>
+                        <i className="fas fa-calendar"></i> {job.daysRemaining}{" "}
+                        Days Remaining
+                      </p>
+                    </div>
+                  </div>
                 </div>
-                <div className="card-des">
-                  <div className="cd-1">
-                    <h3>Senior UX Designer</h3>
-                    <p>Live</p>
-                  </div>
-                  <div className="cd-2">
-                    <p>
-                      <i className="fas fa-map-marker-alt"></i>Australia
-                    </p>
-                    <p>
-                      <i className="fas fa-dollar-sign"></i>$30K-$35K
-                    </p>
-                    <p>
-                      <i className="fas fa-calendar"></i>4 Days Remaining
-                    </p>
-                  </div>
+                <div className="card-button">
+                  <button onClick={() => navigate("/opportunities")}>
+                    View Details <i className="fas fa-arrow-right"></i>
+                  </button>
                 </div>
               </div>
-              <div className="card-button">
-                <button onClick={() => navigate("/opportunities")}>
-                  View Details <i className="fas fa-arrow-right"></i>
-                </button>
-              </div>
-            </div>
-          ))}
+            ))
+          )}
         </div>
 
         <div className="section-header">
@@ -134,14 +156,14 @@ const Activities = () => {
                   </div>
                   <div className="cd-2">
                     <p>
-                      <i className="fas fa-map-marker-alt"></i>Engineering
+                      <i className="fas fa-map-marker-alt"></i> Engineering
                       Building
                     </p>
                     <p>
-                      <i className="fas fa-users"></i>50+ Members
+                      <i className="fas fa-users"></i> 50+ Members
                     </p>
                     <p>
-                      <i className="fas fa-calendar"></i>Weekly Meetings
+                      <i className="fas fa-calendar"></i> Weekly Meetings
                     </p>
                   </div>
                 </div>

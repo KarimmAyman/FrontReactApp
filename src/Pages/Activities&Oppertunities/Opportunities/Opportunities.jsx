@@ -3,19 +3,35 @@ import { Link } from "react-router-dom";
 import "./Opportunities.css";
 import Card from "../../../Components/Card/Card";
 import ParentFooter from "../../../Components/Footer/ParentFooter";
+import { getAllJobs } from "../../../ApiServices/JobService";
 
 const Opportunities = () => {
-  useEffect(() => {
-    setTimeout(() => {
-      window.scrollTo(0, 0);
-    }, 20);
-  }, []);
-
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [jobs, setJobs] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
+
+  useEffect(() => {
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+    }, 20);
+
+    const fetchJobs = async () => {
+      try {
+        const data = await getAllJobs();
+        setJobs(data);
+      } catch (error) {
+        console.error("Error loading jobs:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchJobs();
+  }, []);
 
   return (
     <>
@@ -86,9 +102,13 @@ const Opportunities = () => {
         </div>
 
         <div className="job-list">
-          {[...Array(8)].map((_, index) => (
-            <Card key={index} />
-          ))}
+          {loading ? (
+            <p>Loading jobs...</p>
+          ) : jobs.length === 0 ? (
+            <p>No jobs found.</p>
+          ) : (
+            jobs.map((job) => <Card key={job.id} job={job} />)
+          )}
         </div>
       </div>
 

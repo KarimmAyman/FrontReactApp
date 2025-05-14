@@ -1,6 +1,7 @@
-import  { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Post.css";
+import { createJob } from "../../../ApiServices/JobService";
 
 const Post = () => {
   const navigate = useNavigate();
@@ -35,11 +36,42 @@ const Post = () => {
     setCurrentStep(currentStep - 1);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Form submitted:", formData);
-    navigate("/Dess");
-  };
+ const handleSubmit = async (e) => {
+   e.preventDefault();
+
+   const expiryDate = `${formData.expiryYear}-${formData.expiryMonth.padStart(
+     2,
+     "0"
+   )}-${formData.expiryDay.padStart(2, "0")}`;
+
+   const jobPayload = {
+     title: formData.jobTitle,
+     description: formData.description,
+     responsibilities: formData.requirements,
+     minSalary: 0,
+     maxSalary: parseInt(formData.salary.replace(/[^0-9]/g, ""), 10),
+     location: formData.location,
+     experience: formData.experience,
+     jobType: formData.workType,
+     contractType: formData.educationType,
+     expiryDate: expiryDate,
+     companyName: "N/A", // You can allow company info if needed
+     companyWebsite: "",
+     companyPhone: "",
+     companyEmail: "",
+     category: "General", // Optional default
+     salaryPeriod: "Monthly", // Optional default
+   };
+
+   try {
+     const result = await createJob(jobPayload);
+     console.log("✅ Job created successfully:", result);
+     navigate("/Dess");
+   } catch (err) {
+     console.error("❌ Failed to create job:", err);
+     alert("Failed to create job. Please check your input or token.");
+   }
+ };
 
   return (
     <div className="post-form-container">
@@ -294,6 +326,7 @@ const Post = () => {
             <button className="post-submit-button" onClick={handleSubmit}>
               Create Job
             </button>
+            
           </div>
         </div>
       )}

@@ -1,16 +1,33 @@
-import { useEffect } from "react";
-import "./Details.css";
-import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import ParentFooter from "../../../Components/Footer/ParentFooter";
+import { getJobById } from "../../../ApiServices/JobService"; // استدعاء الخدمة
+import "./Details.css";
+
+
+
 
 const Details = () => {
-  useEffect(() => {
-    setTimeout(() => {
-      window.scrollTo(0, 0);
-    }, 20);
-  }, []);
-
+  const { id } = useParams(); // جلب ID من URL
   const navigate = useNavigate();
+  const [job, setJob] = useState(null);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+
+    const fetchJob = async () => {
+      try {
+        const data = await getJobById(id);
+        setJob(data);
+      } catch (error) {
+        console.error("Failed to fetch job:", error);
+      }
+    };
+
+    fetchJob();
+  }, [id]);
+
+  if (!job) return <p>Loading...</p>;
 
   return (
     <>
@@ -20,8 +37,8 @@ const Details = () => {
           <div className="breadcrumb">
             <Link to="/">Home</Link>
             <Link to="/activities">/ Activities & Opportunities</Link>
-            <Link to="/opportunities">/ Opportunities </Link>
-            <Link to="/details">/ Opportunities details</Link>
+            <Link to="/opportunities">/ Opportunities</Link>
+            <Link to={`/details/${id}`}>/ Opportunities details</Link>
           </div>
         </div>
       </section>
@@ -36,28 +53,28 @@ const Details = () => {
 
           <div className="opportunity-info">
             <div className="opportunity-title">
-              <h2>Senior UX Designer</h2>
+              <h2>{job.title}</h2>
               <div className="opportunity-tags">
                 <span className="tag featured">Featured</span>
-                <span className="tag full-time">Full Time</span>
+                <span className="tag full-time">{job.jobType}</span>
               </div>
             </div>
 
             <div className="company-contact">
               <div className="contact-item">
                 <i className="fas fa-link"></i>
-                <a href="https://instagram.com" className="contact-link">
-                  https://instagram.com
+                <a href={job.companyWebsite} className="contact-link">
+                  {job.companyWebsite}
                 </a>
               </div>
               <div className="contact-item">
                 <i className="fas fa-phone"></i>
-                <span>(406) 555-0120</span>
+                <span>{job.companyPhone}</span>
               </div>
               <div className="contact-item">
                 <i className="fas fa-envelope"></i>
-                <a href="mailto:career@instagram.com" className="contact-link">
-                  career@instagram.com
+                <a href={`mailto:${job.companyEmail}`} className="contact-link">
+                  {job.companyEmail}
                 </a>
               </div>
             </div>
@@ -68,7 +85,10 @@ const Details = () => {
               Apply Now
             </button>
             <p className="expiry-info">
-              Job expires on <span className="expiry-date">June 30, 2021</span>
+              Job expires on{" "}
+              <span className="expiry-date">
+                {job.expiryDate?.split("T")[0]}
+              </span>
             </p>
           </div>
         </div>
@@ -76,33 +96,8 @@ const Details = () => {
         <div className="opportunity-description">
           <h3>Job Description</h3>
           <div className="description-content">
-            <p>
-              We&apos;re looking for a passionate UX Designer to design
-              intuitive and engaging digital products. You will be responsible
-              for creating user-centered designs across all of our platforms.
-              This role combines design thinking, user research, and a deep
-              understanding of user needs to craft exceptional experiences.
-            </p>
-            <p>
-              As part of our design team, you&apos;ll collaborate closely with
-              product managers, engineers, and other stakeholders to ensure our
-              products deliver a seamless and cohesive user experience.
-            </p>
-          </div>
-        </div>
-
-        <div className="opportunity-share">
-          <span>Share this job:</span>
-          <div className="share-buttons">
-            <a href="#" className="share-button facebook">
-              <i className="fab fa-facebook-f"></i> Facebook
-            </a>
-            <a href="#" className="share-button twitter">
-              <i className="fab fa-twitter"></i> Twitter
-            </a>
-            <a href="#" className="share-button linkedin">
-              <i className="fab fa-linkedin-in"></i> LinkedIn
-            </a>
+            <p>{job.description}</p>
+            <p>{job.responsibilities}</p>
           </div>
         </div>
 
@@ -114,7 +109,9 @@ const Details = () => {
               </div>
               <div className="detail-info">
                 <span className="detail-label">JOB POSTED:</span>
-                <span className="detail-value">14 June, 2021</span>
+                <span className="detail-value">
+                  {job.postedDate?.split("T")[0]}
+                </span>
               </div>
             </div>
 
@@ -124,7 +121,9 @@ const Details = () => {
               </div>
               <div className="detail-info">
                 <span className="detail-label">JOB EXPIRE IN:</span>
-                <span className="detail-value">14 July, 2021</span>
+                <span className="detail-value">
+                  {job.expiryDate?.split("T")[0]}
+                </span>
               </div>
             </div>
 
@@ -134,7 +133,7 @@ const Details = () => {
               </div>
               <div className="detail-info">
                 <span className="detail-label">LOCATION:</span>
-                <span className="detail-value">New York, USA</span>
+                <span className="detail-value">{job.location}</span>
               </div>
             </div>
 
@@ -144,7 +143,7 @@ const Details = () => {
               </div>
               <div className="detail-info">
                 <span className="detail-label">JOB TYPE:</span>
-                <span className="detail-value">Full Time</span>
+                <span className="detail-value">{job.jobType}</span>
               </div>
             </div>
           </div>

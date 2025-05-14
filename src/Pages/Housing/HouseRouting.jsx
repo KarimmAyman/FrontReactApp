@@ -1,364 +1,201 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import "./HouseRouting.css";
-import "../../Components/ProfileCard/ProfileCard";
-import apartment from "../../assets/apartment.svg";
 import map from "../../assets/map.svg";
 import ParentFooter from "../../Components/Footer/ParentFooter";
 import ProfileCard from "../../Components/ProfileCard/ProfileCard";
+import { getPropertyById } from "../../ApiServices/PropertyService";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
 
 const HouseRouting = () => {
+  const { id } = useParams();
   const navigate = useNavigate();
+  const [property, setProperty] = useState(null);
+  const imageBaseUrl = "https://studentpathapitest.runasp.net";
+
+  useEffect(() => {
+    const fetchProperty = async () => {
+      try {
+        const data = await getPropertyById(id);
+        console.log("Fetched Property Data:", data);
+        setProperty(data);
+      } catch (error) {
+        console.error("Failed to fetch property:", error);
+      }
+    };
+    fetchProperty();
+  }, [id]);
 
   const handlePostHousing = () => {
     navigate("/housing-post");
   };
 
+  if (!property) return <div>Loading...</div>;
+
+  const interiorFeatures =
+    property.features?.filter((f) => f.category === "Interior") || [];
+  const externalFeatures =
+    property.features?.filter((f) => f.category === "Exterior") || [];
+
   return (
     <div className="house-page">
+      {/* Hero Section */}
       <section className="house-hero">
         <div className="house-hero-Housing Details">
-          <h1>Housing Details</h1>
+          <h1>{property.title || "Housing Details"}</h1>
           <div className="breadcrumb">
             <Link to="/properties">Housing</Link> &gt; Housing Details
           </div>
         </div>
       </section>
-      <div className="sticky-wrapper"></div>
+
+      {/* Main Container */}
       <div className="container">
+        {/* Basic Property Info */}
         <section className="apartment">
           <div className="location">
             <div className="located">
-              <h2>Apartment for sale</h2>
+              <h2>
+                {property.advertisingStatus} - {property.housingType}
+              </h2>
               <div className="location-1">
                 <i className="fa-solid fa-location-dot"></i>
-                <p> London, John Ruskin St.</p>
+                <p>
+                  {property.locations?.[0]?.street || "No Street"},{" "}
+                  {property.locations?.[0]?.city || "No City"}
+                </p>
               </div>
             </div>
             <div className="price">
               <h2>
-                $1.200<span>/mo</span>
+                {property.currency === "GBP" ? "£" : "$"}
+                {property.price}
+                <span>/mo</span>
               </h2>
             </div>
           </div>
+
+          {/* Image Slider */}
           <div className="img-sec">
-            <img src={apartment} alt="apartment" />
-            <div className="house-image-arrows">
-              <i className="fa-solid fa-circle-chevron-left house-image-arrow"></i>
-              <i className="fa-solid fa-circle-chevron-right house-image-arrow"></i>
-            </div>
+            {property.images?.length > 0 ? (
+              <Swiper spaceBetween={10} slidesPerView={1}>
+                {property.images.map((img, idx) => (
+                  <SwiperSlide key={idx}>
+                    <img
+                      src={`${imageBaseUrl}${img.imageUrl}`}
+                      alt={`Property image ${idx + 1}`}
+                      style={{
+                        width: "100%",
+                        height: "auto",
+                        borderRadius: "10px",
+                      }}
+                    />
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            ) : (
+              <p>No images available</p>
+            )}
           </div>
-          <div className="card"></div>
+
+          {/* Listed Info */}
           <div className="des">
             <div className="des-1">
               <i className="fa-regular fa-user"></i>
-              <p>Mohamed Sokar </p>
+              <p>Listed by Owner</p>
             </div>
             <div className="des-2">
               <i className="fa-solid fa-calendar-days"></i>
-              <p>November 26, 2024</p>
+              <p>
+                {property.publishedDate
+                  ? new Date(property.publishedDate).toLocaleDateString()
+                  : "Unknown Date"}
+              </p>
             </div>
           </div>
+
+          {/* Profile Card */}
           <ProfileCard />
+
+          {/* Post New Housing Button */}
           <div className="post-housing-button-container">
             <button className="post-housing-btn" onClick={handlePostHousing}>
-              <i className="fa-solid fa-plus"></i>
-              Post New Housing
+              <i className="fa-solid fa-plus"></i> Post New Housing
             </button>
           </div>
         </section>
+
+        {/* General Information Section */}
         <section className="info">
           <div className="general-information">
             <h2>General Information</h2>
             <div className="info-grid">
               <div className="info-column">
                 <div className="info-item">
-                  <svg
-                    className="check-icon"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                  <span className="info-label">Advertise No</span>
-                  <span className="info-value sp-1">0-1234</span>
+                  <span className="info-label">Room + Living</span>
+                  <span className="info-value">
+                    {property.rooms} + {property.livingRooms ?? 0}
+                  </span>
                 </div>
                 <div className="info-item">
-                  <svg
-                    className="check-icon"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                  <span className="info-label">Published Date</span>
-                  <span className="info-value">26 November 2024</span>
-                </div>
-                <div className="info-item">
-                  <svg
-                    className="check-icon"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                  <span className="info-label">Advertise Status</span>
-                  <span className="info-value">Sale</span>
-                </div>
-                <div className="info-item">
-                  <svg
-                    className="check-icon"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                  <span className="info-label">Housing Shape</span>
-                  <span className="info-value">Apartment</span>
-                </div>
-                <div className="info-item">
-                  <svg
-                    className="check-icon"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                  <span className="info-label">Room + Living Number</span>
-                  <span className="info-value">3 + 1</span>
-                </div>
-                <div className="info-item">
-                  <svg
-                    className="check-icon"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                  <span className="info-label">Gross / Net M²</span>
-                  <span className="info-value">150 M² / 135 M²</span>
-                </div>
-                <div className="info-item">
-                  <svg
-                    className="check-icon"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                  <span className="info-label">Warming Type</span>
-                  <span className="info-value">Natural Gas</span>
-                </div>
-                <div className="info-item">
-                  <svg
-                    className="check-icon"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                  <span className="info-label">Building Age</span>
-                  <span className="info-value">5</span>
-                </div>
-              </div>
-              <div className="info-column">
-                <div className="info-item">
-                  <svg
-                    className="check-icon"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                  <span className="info-label">Floor Location</span>
-                  <span className="info-value">10</span>
-                </div>
-                <div className="info-item">
-                  <svg
-                    className="check-icon"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                  <span className="info-label">Available for Loan</span>
-                  <span className="info-value">Appropriate</span>
-                </div>
-                <div className="info-item">
-                  <svg
-                    className="check-icon"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                  <span className="info-label">Furnished</span>
-                  <span className="info-value">Not</span>
-                </div>
-                <div className="info-item">
-                  <svg
-                    className="check-icon"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                  <span className="info-label">Dues</span>
-                  <span className="info-value">1.200 $</span>
-                </div>
-                <div className="info-item">
-                  <svg
-                    className="check-icon"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                  <span className="info-label">Swap</span>
-                  <span className="info-value">Not</span>
-                </div>
-                <div className="info-item">
-                  <svg
-                    className="check-icon"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                  <span className="info-label">Front</span>
-                  <span className="info-value">Northwest</span>
-                </div>
-                <div className="info-item">
-                  <svg
-                    className="check-icon"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                  <span className="info-label">Rental Income</span>
-                  <span className="info-value">3.000 $</span>
+                  <span className="info-label">Area</span>
+                  <span className="info-value">
+                    {property.grossArea} / {property.netArea} m²
+                  </span>
                 </div>
               </div>
             </div>
           </div>
         </section>
+
+        {/* Explanation Section */}
         <section className="explanation">
           <h2>Explanation</h2>
-          <p>
-            Aliquam eros justo, posuere lobortis viverra blandit non id diam
-            congue posuere viverra. Aliquam eros justo, posuere lobortis viverra
-            blandit augue mattis finibus ullamcorper. Aliquam eros justo,
-            posuere lobortis viverra blandit non id diam congue posuere viverra
-            mattis finibus ullamcorper. Aliquam eros justo, posuere lobortis
-            viverra blandit non id diam congue posuere viverra mattis finibus
-            ullamcorper. Aliquam eros justo, posuere lobortis viverra blandit
-            augue mattis finibus ullamcorper.
-          </p>
+          <p>{property.description}</p>
         </section>
+
+        {/* Feature Tags Section */}
         <div className="features-container">
           <section className="feature-section">
-            <div className="ex-1">
-              <h2>Interior Features</h2>
-              <div className="feature-tags">
-                <span className="feature-tag">ADSL</span>
-                <span className="feature-tag">Alarm</span>
-                <span className="feature-tag">Shower</span>
-                <span className="feature-tag">Sauna</span>
-                <span className="feature-tag">Panel Door</span>
-                <span className="feature-tag">Balcony</span>
-                <span className="feature-tag">Balcony</span>
-                <span className="feature-tag">Blinds</span>
-                <span className="feature-tag">Laminate</span>
-                <span className="feature-tag">Steel Color</span>
-                <span className="feature-tag">Ceramic Floor</span>
-              </div>
+            <h2>Interior Features</h2>
+            <div className="feature-tags">
+              {interiorFeatures.length > 0 ? (
+                interiorFeatures.map((f, i) => (
+                  <span key={i} className="feature-tag">
+                    {f.name}
+                  </span>
+                ))
+              ) : (
+                <p>No interior features</p>
+              )}
             </div>
           </section>
 
           <section className="feature-section">
-            <div className="ex">
-              <h2>External Features</h2>
-              <div className="feature-tags">
-                <span className="feature-tag">Elevator</span>
-                <span className="feature-tag">Gardened</span>
-                <span className="feature-tag">Fitness</span>
-                <span className="feature-tag">Security</span>
-                <span className="feature-tag">Thermal Insulation</span>
-                <span className="feature-tag">Decorative</span>
-                <span className="feature-tag">PVC</span>
-                <span className="feature-tag">Laminate</span>
-                <span className="feature-tag">Market</span>
-                <span className="feature-tag">Car Park</span>
-                <span className="feature-tag">Basketball Field</span>
-              </div>
+            <h2>External Features</h2>
+            <div className="feature-tags">
+              {externalFeatures.length > 0 ? (
+                externalFeatures.map((f, i) => (
+                  <span key={i} className="feature-tag">
+                    {f.name}
+                  </span>
+                ))
+              ) : (
+                <p>No external features</p>
+              )}
             </div>
           </section>
         </div>
+
+        {/* Map Image */}
         <div className="location-img">
           <h2>Location Information</h2>
           <img src={map} alt="map" />
         </div>
       </div>
+
+      {/* Footer */}
       <ParentFooter />
     </div>
   );

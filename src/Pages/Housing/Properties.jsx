@@ -1,7 +1,9 @@
+// src/Pages/Properties.jsx
 import "./Properties.css";
 import ParentFooter from "../../Components/Footer/ParentFooter";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { getProperties } from "../../ApiServices/PropertyService"; // استيراد الخدمة
 
 // Import partner logos
 import segmentLogo from "../../assets/Company logo.svg";
@@ -15,24 +17,42 @@ import resp from "../../assets/resp.svg";
 const Properties = () => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  const locations = [
-    "Beach westpalm",
-    "Miami Beach",
-    "Palm Beach",
-    "Fort Lauderdale",
-  ];
+  const [properties, setProperties] = useState([]);
   const [filteredLocations, setFilteredLocations] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchProperties = async () => {
+      try {
+        const data = await getProperties();
+        console.log("Fetched data:", data); // قم بتسجيل الاستجابة
+
+        if (data && Array.isArray(data)) {
+          setProperties(data); // في حال كانت البيانات قائمة من العقارات
+        } else if (data && data.data) {
+          setProperties(data.data); // في حال كانت البيانات تحتوي على خاصية "data" مع قائمة العقارات
+        }
+      } catch (error) {
+        console.error("Failed to fetch properties:", error);
+      }
+    };
+
+    fetchProperties();
+  }, []);
 
   const handleSearchChange = (e) => {
     const query = e.target.value;
     setSearchQuery(query);
 
     // Filter locations based on search query
-    const filtered = locations.filter((location) =>
-      location.toLowerCase().includes(query.toLowerCase())
-    );
+    const filtered = properties
+      .map((p) => p.location) // Assuming `location` is a property of each property object
+      .filter(
+        (loc, i, arr) =>
+          loc?.toLowerCase().includes(query.toLowerCase()) &&
+          arr.indexOf(loc) === i
+      );
     setFilteredLocations(filtered);
     setShowSuggestions(query.length > 0);
   };
@@ -161,61 +181,37 @@ const Properties = () => {
               <div className="rating-buttons">
                 <button className="rating-btn">1★</button>
                 <button className="rating-btn">2★</button>
-                <button className="rating-btn">2★</button>
-                <button className="rating-btn">1★</button>
-                <button className="rating-btn">1★</button>
-              </div>
-            </div>
-
-            {/* Popular Locations */}
-            <div className="filter-group">
-              <h3>Popular locations</h3>
-              <div className="location-filters">
-                <label>
-                  <input type="checkbox" /> Free cancellation
-                </label>
-                <label>
-                  <input type="checkbox" /> Spa
-                </label>
-                <label>
-                  <input type="checkbox" /> Beach front
-                </label>
-                <label>
-                  <input type="checkbox" /> Hot tub/jacuzzi
-                </label>
-                <label>
-                  <input type="checkbox" /> Book without credit card
-                </label>
-                <label>
-                  <input type="checkbox" /> No prepayment
-                </label>
+                <button className="rating-btn">3★</button>
               </div>
             </div>
           </aside>
 
           {/* Properties Grid */}
           <div className="properties-grid">
-            {[...Array(12)].map((_, index) => (
-              <div key={index} className="property-card">
-                <img src={resp} alt="Apartment" />
-                <div className="property-info">
-                  <h3>Apartment for sale</h3>
-                  <p>
-                    Beautiful apartment with modern amenities and great location
-                  </p>
-                  <div className="property-footer">
-                    <span className="price">$849</span>
-                    <button
-                      className="view-more"
-                      onClick={() => handlePropertyClick(index + 1)}
-                      aria-label="View property details"
-                    >
-                      →
-                    </button>
+            {properties.length > 0 ? (
+              properties.map((property) => (
+                <div key={property.propertyId} className="property-card">
+                  <img src={property.imageUrl || resp} alt={property.title} />
+                  <div className="property-info">
+                    <h3>
+                      {property.housingType} for {property.advertisingStatus}
+                    </h3>
+                    <p>{property.rooms} rooms</p>
+                    <div className="property-footer">
+                      <span className="price">${property.price}</span>
+                      <button
+                        className="view-more"
+                        onClick={() => handlePropertyClick(property.propertyId)}
+                      >
+                        →
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))
+            ) : (
+              <p>No properties found.</p>
+            )}
           </div>
         </div>
 

@@ -199,13 +199,14 @@ function App() {
               }
             />
             <Route
-              path="/details"
+              path="/details/:id"
               element={
                 <ProtectedRoute>
                   <Details />
                 </ProtectedRoute>
               }
             />
+
             <Route
               path="/post"
               element={
@@ -255,7 +256,7 @@ function App() {
               }
             />
             <Route
-              path="/housing-details/:propertyId"
+              path="/housing-details/:id"
               element={
                 <ProtectedRoute>
                   <HousingDetails />
