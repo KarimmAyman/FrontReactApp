@@ -1,14 +1,17 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { registerUser } from "../../ApiServices/RegisterService";
 import "./LoginInfo.css";
 import logo from "../../assets/mainAou.svg";
 
 const LoginInfo = () => {
   const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     password: "",
     confirmPassword: "",
   });
+
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
@@ -47,55 +50,52 @@ const LoginInfo = () => {
 
     const existingData = JSON.parse(localStorage.getItem("signupData") || "{}");
 
+    const age = parseInt(existingData.age, 10);
+    if (isNaN(age) || age < 5 || age > 120) {
+      setError("Age must be between 5 and 120");
+      setIsLoading(false);
+      return;
+    }
     const registrationData = {
-      fullName: `${existingData.firstName} ${existingData.lastName}`,
-      email: existingData.email,
-      password: formData.password,
-      confirmedPassword: formData.confirmPassword,
-      imgUrl: "",
-      userType: 0,
-      age: parseInt(existingData.age),
-      gender: existingData.gender === "Male" ? 0 : 1,
-      phoneNumber: existingData.phoneNumber,
-      registrationDate: new Date().toISOString(),
-      drivingLicense: "",
-      vehicleinfo: [],
+      FullName: `${existingData.firstName} ${existingData.lastName}`,
+      Email: existingData.email,
+      Password: formData.password,
+      ConfirmedPassword: formData.confirmPassword,
+      PhoneNumber: existingData.phoneNumber,
+      UserType: 0, // User عادي
+      Gender: existingData.gender === "Male" ? 1 : 2,
+      Age: age,
+      ImgUrlFile: existingData.ImgUrlFile || null,
+
+      // أرسل النص وليس كائن
       locations: [
         {
-          city: existingData.address || "Unknown",
-          country: "Egypt",
-          latitude: 0,
-          longitude: 0,
+          City: existingData.address || "Unknown",
+          Country: "Egypt",
+          Latitude: 0,
+          Longitude: 0,
         },
       ],
+      vehicleInfoJson: [],
+      // نص JSON فارغ لأن المستخدم ليس سائق
     };
 
     try {
-      console.log("Sending registration data:", registrationData);
+      const response = await registerUser(registrationData);
 
-      const response = await fetch("/api/Accounts/Register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(registrationData),
-      });
-
-      const data = await response.json();
-      console.log("Response data:", data);
-
-      if (!response.ok || data.successed === false) {
-        if (data.errors && Array.isArray(data.errors)) {
-          throw new Error(data.errors[0]);
-        }
-        throw new Error("Registration failed. Please try again.");
+      if (!response || response.successed === false) {
+        const message =
+          response?.errors?.length > 0
+            ? response.errors.join(", ")
+            : "Registration failed. Please try again.";
+        throw new Error(message);
       }
 
       localStorage.removeItem("signupData");
       navigate("/success");
-    } catch (error) {
-      console.error("Registration error:", error);
-      setError(error.message || "Registration failed. Please try again.");
+    } catch (err) {
+      console.error("Registration error:", err);
+      setError(err.message || "An unexpected error occurred.");
     } finally {
       setIsLoading(false);
     }
@@ -136,7 +136,7 @@ const LoginInfo = () => {
               required
               placeholder="Enter your password"
               disabled={isLoading}
-              minLength="6"
+              minLength={6}
             />
           </div>
 
@@ -151,7 +151,7 @@ const LoginInfo = () => {
               required
               placeholder="Confirm your password"
               disabled={isLoading}
-              minLength="6"
+              minLength={6}
             />
           </div>
 
