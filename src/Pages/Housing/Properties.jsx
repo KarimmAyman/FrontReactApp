@@ -18,6 +18,7 @@ const Properties = () => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [properties, setProperties] = useState([]);
+  const [filteredProperties, setFilteredProperties] = useState([]);
   const [filteredLocations, setFilteredLocations] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const navigate = useNavigate();
@@ -26,12 +27,14 @@ const Properties = () => {
     const fetchProperties = async () => {
       try {
         const data = await getProperties();
-        console.log("Fetched data:", data); // قم بتسجيل الاستجابة
+        console.log("Fetched data:", data);
 
         if (data && Array.isArray(data)) {
-          setProperties(data); // في حال كانت البيانات قائمة من العقارات
+          setProperties(data);
+          setFilteredProperties(data);
         } else if (data && data.data) {
-          setProperties(data.data); // في حال كانت البيانات تحتوي على خاصية "data" مع قائمة العقارات
+          setProperties(data.data);
+          setFilteredProperties(data.data);
         }
       } catch (error) {
         console.error("Failed to fetch properties:", error);
@@ -42,24 +45,38 @@ const Properties = () => {
   }, []);
 
   const handleSearchChange = (e) => {
-    const query = e.target.value;
+    const query = e.target.value.toLowerCase();
     setSearchQuery(query);
 
-    // Filter locations based on search query
+    // Filter locations for suggestions
     const filtered = properties
-      .map((p) => p.location) // Assuming `location` is a property of each property object
+      .map((p) => p.location)
       .filter(
         (loc, i, arr) =>
-          loc?.toLowerCase().includes(query.toLowerCase()) &&
-          arr.indexOf(loc) === i
+          loc?.toLowerCase().includes(query) && arr.indexOf(loc) === i
       );
     setFilteredLocations(filtered);
     setShowSuggestions(query.length > 0);
+
+    // Filter properties based on search query
+    const filteredProps = properties.filter((property) => {
+      const locationMatch = property.location?.toLowerCase().includes(query);
+      const titleMatch = property.title?.toLowerCase().includes(query);
+      const typeMatch = property.housingType?.toLowerCase().includes(query);
+      return locationMatch || titleMatch || typeMatch;
+    });
+    setFilteredProperties(filteredProps);
   };
 
   const handleLocationSelect = (location) => {
     setSearchQuery(location);
     setShowSuggestions(false);
+
+    // Filter properties when a location is selected
+    const filteredProps = properties.filter(
+      (property) => property.location?.toLowerCase() === location.toLowerCase()
+    );
+    setFilteredProperties(filteredProps);
   };
 
   const handlePropertyClick = (propertyId) => {
@@ -77,6 +94,27 @@ const Properties = () => {
               <br />
               Of Dream
             </h1>
+            <button
+              className="post-housing-btn"
+              onClick={() => navigate("/housing-post")}
+              style={{
+                marginTop: "20px",
+                background: "#83cd20",
+                color: "white",
+                padding: "12px 30px",
+                border: "none",
+                borderRadius: "8px",
+                fontSize: "16px",
+                fontWeight: "600",
+                cursor: "pointer",
+                display: "flex",
+                alignItems: "center",
+                gap: "10px",
+                boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+              }}
+            >
+              <i className="fa-solid fa-plus"></i> Post New Housing
+            </button>
           </div>
           <div className="properities-image">
             <img src={Building} alt="Dream Building" />
@@ -188,8 +226,8 @@ const Properties = () => {
 
           {/* Properties Grid */}
           <div className="properties-grid">
-            {properties.length > 0 ? (
-              properties.map((property) => (
+            {filteredProperties.length > 0 ? (
+              filteredProperties.map((property) => (
                 <div key={property.propertyId} className="property-card">
                   <img src={property.imageUrl || resp} alt={property.title} />
                   <div className="property-info">
@@ -210,7 +248,7 @@ const Properties = () => {
                 </div>
               ))
             ) : (
-              <p>No properties found.</p>
+              <p>No properties found matching your search.</p>
             )}
           </div>
         </div>

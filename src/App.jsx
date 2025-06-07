@@ -34,6 +34,8 @@ import ProfileSettings from "./Pages/Profile/ProfileSettings";
 import Profile from "./Pages/Profile/Profile";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import PublicRoute from "./components/PublicRoute/PublicRoute";
+import Corporates from "./Pages/corporates/corporates";
+import Offerings from "./Pages/offerings/offerings";
 
 function App() {
   return (
@@ -44,6 +46,8 @@ function App() {
           <Routes>
             {/* الصفحات العامة (غير محمية) */}
             <Route path="/" element={<LandingPage />} />
+            <Route path="/corporates" element={<Corporates />} />
+            <Route path="/offerings" element={<Offerings />} />
             <Route
               path="/login"
               element={

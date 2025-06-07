@@ -223,10 +223,10 @@ const SuccessStory = () => {
     <div className="success-page">
       <section className="success-hero">
         <div className="success-hero-content">
+          <h1>Student Success Stories</h1>
           <div className="breadcrumb">
             <Link to="/">Home</Link> / Success Stories
           </div>
-          <h1>Student Success Stories</h1>
           <p className="hero-description">
             Discover how Egyptian students found their perfect accommodation
             with Aoun

@@ -66,10 +66,10 @@ const Team = () => {
     <div className="team-page">
       <section className="team-hero">
         <div className="team-hero-content">
+          <h1>Our Team</h1>
           <div className="breadcrumb">
             <Link to="/">Home</Link> / Team
           </div>
-          <h1>Our Team</h1>
         </div>
       </section>
 

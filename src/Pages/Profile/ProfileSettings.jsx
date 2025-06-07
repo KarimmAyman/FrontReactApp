@@ -255,57 +255,8 @@ const ProfileSettings = () => {
                             </div>
                         </div>
 
-                        <div className="email-section">
-                            <h3>My email Address</h3>
-                            <div className="email-item">
-                                <div className="email-icon">
-                                    <i className="fas fa-envelope"></i>
-                                </div>
-                                <div className="email-content">
-                                    <p>{formData.email}</p>
-                                    <span>3 month ago</span>
-                                </div>
-                            </div>
-                        </div>
+                        
 
-                        <div className="form-row preferences">
-                            <div className="form-group">
-                                <label>Theme</label>
-                                <select
-                                    name="theme"
-                                    value={formData.theme}
-                                    onChange={handleInputChange}
-                                    disabled={!isEditMode}
-                                >
-                                    <option value="light">Light</option>
-                                    <option value="dark">Dark</option>
-                                </select>
-                            </div>
-                            <div className="form-group">
-                                <label>Language</label>
-                                <select
-                                    name="language"
-                                    value={formData.language}
-                                    onChange={handleInputChange}
-                                    disabled={!isEditMode}
-                                >
-                                    <option value="Eng">Eng</option>
-                                    <option value="Ar">Arabic</option>
-                                    <option value="Fr">French</option>
-                                </select>
-                            </div>
-                            <div className="form-group notification-group">
-                                <label>Notification</label>
-                                <select
-                                    name="notification"
-                                    disabled={!isEditMode}
-                                    defaultValue="allow"
-                                >
-                                    <option value="allow">Allow</option>
-                                    <option value="deny">Deny</option>
-                                </select>
-                            </div>
-                        </div>
 
                         {isEditMode && (
                             <div className="form-actions">

@@ -152,10 +152,10 @@ const Blog = () => {
   return (
     <div className="blog-container">
       <div className="blog-header">
+        <h1>Blog</h1>
         <div className="breadcrumb">
           <Link to="/">Home</Link> /Blog
         </div>
-        <h1>Blog</h1>
       </div>
 
       <div className="blog-grid">

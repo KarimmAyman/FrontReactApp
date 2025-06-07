@@ -4,9 +4,6 @@ import ParentFooter from "../../../Components/Footer/ParentFooter";
 import { getJobById } from "../../../ApiServices/JobService"; // استدعاء الخدمة
 import "./Details.css";
 
-
-
-
 const Details = () => {
   const { id } = useParams(); // جلب ID من URL
   const navigate = useNavigate();
@@ -81,7 +78,10 @@ const Details = () => {
           </div>
 
           <div className="opportunity-action">
-            <button className="apply-button" onClick={() => navigate("/")}>
+            <button
+              className="apply-button"
+              onClick={() => navigate("/opportunities")}
+            >
               Apply Now
             </button>
             <p className="expiry-info">

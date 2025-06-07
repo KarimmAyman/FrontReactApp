@@ -1,0 +1,261 @@
+.aoun-offerings-page {
+  min-height: 100vh;
+  background-color: #f8f9fa;
+}
+
+/* Hero Section */
+.aoun-offerings-hero {
+  background-color: #2d5a4d;
+  color: white;
+  padding: clamp(30px, 5vw, 50px) 20px;
+  border-radius: 15px;
+  margin-bottom: 30px;
+  margin: 0 40px;
+}
+
+.aoun-offerings-hero-content {
+  max-width: 800px;
+  /* margin: 0 auto; */
+  padding: 0 20px;
+}
+
+.aoun-offerings-hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.aoun-offerings-breadcrumb {
+  font-size: 1.1rem;
+}
+
+.aoun-offerings-breadcrumb a {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.aoun-offerings-breadcrumb a:hover {
+  color: #75b81d;
+}
+
+/* Main Content */
+.aoun-offerings-content {
+  padding: 80px 0;
+}
+
+.aoun-offerings-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Introduction Section */
+.aoun-offerings-intro {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.aoun-offerings-intro h2 {
+  font-size: 2.5rem;
+  color: #034833;
+  margin-bottom: 20px;
+}
+
+.aoun-offerings-intro p {
+  font-size: 1.2rem;
+  color: #666;
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Services Grid */
+.aoun-offerings-services {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-bottom: 80px;
+}
+
+.aoun-offerings-service-card {
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+  display: flex;
+  flex-direction: column;
+}
+
+.aoun-offerings-service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.aoun-offerings-service-icon {
+  font-size: 2.5rem;
+  color: #83cd20;
+  margin-bottom: 20px;
+}
+
+.aoun-offerings-service-card h3 {
+  font-size: 1.5rem;
+  color: #034833;
+  margin-bottom: 15px;
+}
+
+.aoun-offerings-service-card p {
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  flex-grow: 1;
+}
+
+.aoun-offerings-service-link {
+  color: #83cd20;
+  text-decoration: none;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: color 0.3s;
+}
+
+.aoun-offerings-service-link:hover {
+  color: #75b81d;
+}
+
+.aoun-offerings-service-link i {
+  transition: transform 0.3s;
+}
+
+.aoun-offerings-service-link:hover i {
+  transform: translateX(5px);
+}
+
+/* Features Section */
+.aoun-offerings-features {
+  margin-bottom: 80px;
+}
+
+.aoun-offerings-features h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  color: #034833;
+  margin-bottom: 40px;
+}
+
+.aoun-offerings-features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+}
+
+.aoun-offerings-feature-item {
+  background: white;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.aoun-offerings-feature-item h4 {
+  font-size: 1.3rem;
+  color: #034833;
+  margin-bottom: 15px;
+}
+
+.aoun-offerings-feature-item p {
+  color: #666;
+  line-height: 1.6;
+}
+
+/* CTA Section */
+.aoun-offerings-cta {
+  text-align: center;
+  background: linear-gradient(rgba(3, 72, 51, 0.95), rgba(3, 72, 51, 0.95));
+  padding: 60px 20px;
+  border-radius: 10px;
+  color: white;
+}
+
+.aoun-offerings-cta h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.aoun-offerings-cta p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.aoun-offerings-cta-button {
+  display: inline-block;
+  background: #83cd20;
+  color: white;
+  padding: 15px 40px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 500;
+  transition: background-color 0.3s;
+}
+
+.aoun-offerings-cta-button:hover {
+  background: #75b81d;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .aoun-offerings-hero h1 {
+    font-size: 2.5rem;
+  }
+
+  .aoun-offerings-intro h2,
+  .aoun-offerings-features h2,
+  .aoun-offerings-cta h2 {
+    font-size: 2rem;
+  }
+
+  .aoun-offerings-services {
+    grid-template-columns: 1fr;
+  }
+
+  .aoun-offerings-features-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .aoun-offerings-service-card,
+  .aoun-offerings-feature-item {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .aoun-offerings-hero {
+    padding: 100px 0 40px;
+  }
+
+  .aoun-offerings-hero h1 {
+    font-size: 2rem;
+  }
+
+  .aoun-offerings-content {
+    padding: 40px 0;
+  }
+
+  .aoun-offerings-intro h2,
+  .aoun-offerings-features h2,
+  .aoun-offerings-cta h2 {
+    font-size: 1.8rem;
+  }
+
+  .aoun-offerings-cta-button {
+    padding: 12px 30px;
+    font-size: 1rem;
+  }
+}

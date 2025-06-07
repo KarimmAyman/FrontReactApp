@@ -43,10 +43,10 @@ const FAQ = () => {
     <div className="faq-page">
       <section className="faq-hero">
         <div className="faq-hero-content">
+          <h1>FAQ</h1>
           <div className="breadcrumb">
             <Link to="/">Home</Link> / FAQ
           </div>
-          <h1>FAQ</h1>
         </div>
       </section>
 

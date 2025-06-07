@@ -6,7 +6,10 @@ import ParentFooter from "../../Components/Footer/ParentFooter";
 import ProfileCard from "../../Components/ProfileCard/ProfileCard";
 import { getPropertyById } from "../../ApiServices/PropertyService";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 const HouseRouting = () => {
   const { id } = useParams();
@@ -79,16 +82,27 @@ const HouseRouting = () => {
           {/* Image Slider */}
           <div className="img-sec">
             {property.images?.length > 0 ? (
-              <Swiper spaceBetween={10} slidesPerView={1}>
+              <Swiper
+                modules={[Navigation, Pagination]}
+                spaceBetween={10}
+                slidesPerView={1}
+                navigation
+                pagination={{ clickable: true }}
+                className="property-slider"
+                style={{ borderRadius: "10px" }}
+              >
                 {property.images.map((img, idx) => (
                   <SwiperSlide key={idx}>
                     <img
                       src={`${imageBaseUrl}${img.imageUrl}`}
                       alt={`Property image ${idx + 1}`}
+                      className="property-slider-image"
                       style={{
                         width: "100%",
                         height: "auto",
                         borderRadius: "10px",
+                        objectFit: "cover",
+                        maxHeight: "350px",
                       }}
                     />
                   </SwiperSlide>
@@ -99,31 +113,8 @@ const HouseRouting = () => {
             )}
           </div>
 
-          {/* Listed Info */}
-          <div className="des">
-            <div className="des-1">
-              <i className="fa-regular fa-user"></i>
-              <p>Listed by Owner</p>
-            </div>
-            <div className="des-2">
-              <i className="fa-solid fa-calendar-days"></i>
-              <p>
-                {property.publishedDate
-                  ? new Date(property.publishedDate).toLocaleDateString()
-                  : "Unknown Date"}
-              </p>
-            </div>
-          </div>
-
           {/* Profile Card */}
           <ProfileCard />
-
-          {/* Post New Housing Button */}
-          <div className="post-housing-button-container">
-            <button className="post-housing-btn" onClick={handlePostHousing}>
-              <i className="fa-solid fa-plus"></i> Post New Housing
-            </button>
-          </div>
         </section>
 
         {/* General Information Section */}

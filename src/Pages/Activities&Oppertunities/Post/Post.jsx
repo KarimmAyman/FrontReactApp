@@ -66,7 +66,7 @@ const Post = () => {
    try {
      const result = await createJob(jobPayload);
      console.log("✅ Job created successfully:", result);
-     navigate("/Dess");
+     navigate("/activities");
    } catch (err) {
      console.error("❌ Failed to create job:", err);
      alert("Failed to create job. Please check your input or token.");

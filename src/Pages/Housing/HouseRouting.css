@@ -80,8 +80,9 @@ h4 {
   border-radius: 18px;
 }
 .img-sec {
-  position: relative;
   width: 100%;
+  max-width: 600px;
+  margin: 0 auto 24px auto;
 }
 
 /* Add specific class names to avoid conflicts */
@@ -357,4 +358,38 @@ h2 {
   flex-direction: column;
   align-items: flex-start;
   gap: 10px;
+}
+
+.swiper {
+  border-radius: 10px;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: #8cc63f;
+}
+
+.swiper-pagination-bullet {
+  background: #8cc63f;
+}
+
+.property-slider {
+  border-radius: 10px;
+}
+
+.property-slider .swiper-button-next,
+.property-slider .swiper-button-prev {
+  color: #8cc63f;
+}
+
+.property-slider .swiper-pagination-bullet {
+  background: #8cc63f;
+}
+
+.property-slider-image {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  object-fit: cover;
+  max-height: 350px;
 }

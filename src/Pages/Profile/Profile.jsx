@@ -43,7 +43,7 @@ const dummyOpportunities = [
 
 const ProfileTabs = ({ activeTab, setActiveTab }) => (
   <div className="profile-tabs">
-    {["Housing", "Opportunities", "Notifications"].map((tab) => (
+    {["Housing", "Opportunities"].map((tab) => (
       <div
         key={tab}
         className={`tab-item ${activeTab === tab ? "active" : ""}`}
@@ -227,15 +227,6 @@ const Profile = () => {
                     </Link>
                   </div>
                 ))}
-              </div>
-            </div>
-          )}
-
-          {activeTab === "Notifications" && (
-            <div className="content-section">
-              <h2 className="section-title">Notifications</h2>
-              <div className="notification-empty">
-                <p>You don&apos;t have any notifications yet.</p>
               </div>
             </div>
           )}
