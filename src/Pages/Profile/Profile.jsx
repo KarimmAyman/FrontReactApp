@@ -2,42 +2,101 @@ import { useEffect, useState } from "react";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import { useAuth } from "../../context/useAuth";
 import "./Profile.css";
+import PropTypes from "prop-types";
 
 const dummyPosts = [
   {
     id: 1,
     type: "Apartment for sale",
     status: "Live",
-    location: "Australia",
+    location: "Sydney, Australia",
     bedrooms: 4,
     area: "128 m²",
+    price: "$450,000",
   },
   {
     id: 2,
-    type: "Apartment for sale",
+    type: "Villa for rent",
+    status: "Live",
+    location: "Melbourne, Australia",
+    bedrooms: 5,
+    area: "200 m²",
+    price: "$3,500/mo",
+  },
+  {
+    id: 3,
+    type: "Penthouse for sale",
+    status: "Live",
+    location: "Brisbane, Australia",
+    bedrooms: 3,
+    area: "150 m²",
+    price: "$650,000",
+  },
+  {
+    id: 4,
+    type: "Studio Apartment",
     status: "Canceled",
-    location: "Australia",
-    bedrooms: 4,
-    area: "128 m²",
+    location: "Perth, Australia",
+    bedrooms: 1,
+    area: "45 m²",
+    price: "$250,000",
+  },
+  {
+    id: 5,
+    type: "Townhouse for rent",
+    status: "Live",
+    location: "Adelaide, Australia",
+    bedrooms: 3,
+    area: "120 m²",
+    price: "$2,800/mo",
   },
 ];
 
 const dummyOpportunities = [
   {
     id: 1,
-    type: "Apartment for sale",
-    status: "Canceled",
-    location: "Australia",
-    bedrooms: 4,
-    area: "128 m²",
+    type: "Senior UX Designer",
+    status: "Live",
+    location: "Sydney, Australia",
+    salary: "$90K-$120K",
+    daysRemaining: 15,
+    company: "Tech Solutions Inc.",
   },
   {
     id: 2,
-    type: "Senior UX Designer",
+    type: "Full Stack Developer",
     status: "Live",
-    location: "Australia",
-    salary: "$30K-$35K",
-    daysRemaining: 4,
+    location: "Melbourne, Australia",
+    salary: "$100K-$130K",
+    daysRemaining: 7,
+    company: "Digital Innovations",
+  },
+  {
+    id: 3,
+    type: "Product Manager",
+    status: "Live",
+    location: "Brisbane, Australia",
+    salary: "$110K-$140K",
+    daysRemaining: 20,
+    company: "Growth Tech",
+  },
+  {
+    id: 4,
+    type: "Data Scientist",
+    status: "Canceled",
+    location: "Perth, Australia",
+    salary: "$95K-$125K",
+    daysRemaining: 0,
+    company: "AI Solutions",
+  },
+  {
+    id: 5,
+    type: "DevOps Engineer",
+    status: "Live",
+    location: "Adelaide, Australia",
+    salary: "$105K-$135K",
+    daysRemaining: 12,
+    company: "Cloud Systems",
   },
 ];
 
@@ -62,6 +121,7 @@ const Profile = () => {
   const [activeTab, setActiveTab] = useState("Housing");
   const [userPosts] = useState(dummyPosts);
   const [userOpportunities] = useState(dummyOpportunities);
+  const [selectedPost, setSelectedPost] = useState(null);
 
   // دالة لإنشاء الأحرف الأولى من الاسم
   const getInitials = (name) => {
@@ -81,6 +141,112 @@ const Profile = () => {
       navigate("/login");
     }
   }, [isAuth, navigate]);
+
+  const PostDetailsModal = ({ post, onClose }) => {
+    if (!post) return null;
+
+    return (
+      <div className="post-details-modal">
+        <div className="modal-content">
+          <button className="close-button" onClick={onClose}>
+            <i className="fas fa-times"></i>
+          </button>
+
+          <div className="modal-header">
+            <h2>{post.type}</h2>
+            <span className={`status-badge ${post.status.toLowerCase()}`}>
+              {post.status}
+            </span>
+          </div>
+
+          <div className="modal-body">
+            <div className="details-grid">
+              <div className="detail-item">
+                <i className="fas fa-map-marker-alt"></i>
+                <span>{post.location}</span>
+              </div>
+              {post.bedrooms && (
+                <div className="detail-item">
+                  <i className="fas fa-bed"></i>
+                  <span>{post.bedrooms} Bedrooms</span>
+                </div>
+              )}
+              {post.area && (
+                <div className="detail-item">
+                  <i className="fas fa-ruler-combined"></i>
+                  <span>{post.area}</span>
+                </div>
+              )}
+              {post.price && (
+                <div className="detail-item">
+                  <i className="fas fa-dollar-sign"></i>
+                  <span>{post.price}</span>
+                </div>
+              )}
+              {post.salary && (
+                <div className="detail-item">
+                  <i className="fas fa-dollar-sign"></i>
+                  <span>{post.salary}</span>
+                </div>
+              )}
+              {post.daysRemaining && (
+                <div className="detail-item">
+                  <i className="fas fa-calendar"></i>
+                  <span>{post.daysRemaining} Days Remaining</span>
+                </div>
+              )}
+            </div>
+
+            <div className="description-section">
+              <h3>Description</h3>
+              <p>
+                {post.type.toLowerCase().includes("apartment")
+                  ? "This beautiful property offers modern living spaces with excellent amenities. Located in a prime area, it provides easy access to transportation and local attractions."
+                  : "This exciting opportunity offers a great chance to advance your career. Join a dynamic team in a growing company with competitive benefits and a positive work environment."}
+              </p>
+            </div>
+
+            <div className="features-section">
+              <h3>Features</h3>
+              <div className="features-grid">
+                {post.type.toLowerCase().includes("apartment") ? (
+                  <>
+                    <span className="feature-tag">Modern Kitchen</span>
+                    <span className="feature-tag">Balcony</span>
+                    <span className="feature-tag">Parking</span>
+                    <span className="feature-tag">Security</span>
+                    <span className="feature-tag">Gym Access</span>
+                  </>
+                ) : (
+                  <>
+                    <span className="feature-tag">Remote Work</span>
+                    <span className="feature-tag">Health Insurance</span>
+                    <span className="feature-tag">Flexible Hours</span>
+                    <span className="feature-tag">Career Growth</span>
+                    <span className="feature-tag">Team Events</span>
+                  </>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  PostDetailsModal.propTypes = {
+    post: PropTypes.shape({
+      type: PropTypes.string.isRequired,
+      status: PropTypes.string.isRequired,
+      location: PropTypes.string.isRequired,
+      bedrooms: PropTypes.number,
+      area: PropTypes.string,
+      price: PropTypes.string,
+      salary: PropTypes.string,
+      daysRemaining: PropTypes.number,
+    }).isRequired,
+    onClose: PropTypes.func.isRequired,
+  };
 
   return (
     <div className="profile-page">
@@ -150,12 +316,12 @@ const Profile = () => {
                         </div>
                       </div>
                     </div>
-                    <Link
-                      to={`/housing-details/${post.id}`}
+                    <button
                       className="view-button"
+                      onClick={() => setSelectedPost(post)}
                     >
                       View <i className="fas fa-arrow-right"></i>
-                    </Link>
+                    </button>
                   </div>
                 ))}
               </div>
@@ -215,16 +381,12 @@ const Profile = () => {
                         </div>
                       </div>
                     </div>
-                    <Link
-                      to={
-                        post.type.toLowerCase().includes("apartment")
-                          ? `/housing-details/${post.id}`
-                          : `/details/${post.id}`
-                      }
+                    <button
                       className="view-button"
+                      onClick={() => setSelectedPost(post)}
                     >
                       View <i className="fas fa-arrow-right"></i>
-                    </Link>
+                    </button>
                   </div>
                 ))}
               </div>
@@ -232,6 +394,13 @@ const Profile = () => {
           )}
         </div>
       </div>
+
+      {selectedPost && (
+        <PostDetailsModal
+          post={selectedPost}
+          onClose={() => setSelectedPost(null)}
+        />
+      )}
     </div>
   );
 };

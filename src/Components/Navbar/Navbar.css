@@ -60,6 +60,7 @@
 
 .dropdown-toggle i {
   transition: transform 0.3s ease;
+  
 }
 
 .dropdown-toggle i.rotate {
