@@ -145,10 +145,18 @@ const Properties = () => {
         {/* Filter Toggle Button for Mobile */}
         <button
           className="filter-toggle-btn"
-          onClick={() => setIsFilterOpen(!isFilterOpen)}
+          onClick={() => setIsFilterOpen(true)}
         >
-          Filter by <span>{isFilterOpen ? "▼" : "▲"}</span>
+          Filter by <span>▲</span>
         </button>
+
+        {/* Sidebar Overlay for mobile */}
+        {isFilterOpen && (
+          <div
+            className="sidebar-overlay"
+            onClick={() => setIsFilterOpen(false)}
+          />
+        )}
 
         <div className="properties-layout">
           {/* Filters Sidebar */}
@@ -255,10 +263,14 @@ const Properties = () => {
 
         {/* Pagination */}
         <div className="pagination">
-          <button className="active">1</button>
-          <button>2</button>
-          <button>3</button>
-          <button>4</button>
+          <button className="pagination-arrow" disabled>
+            &#60;
+          </button>
+          <button className="pagination-btn active">1</button>
+          <button className="pagination-btn">2</button>
+          <button className="pagination-btn">3</button>
+          <button className="pagination-btn">4</button>
+          <button className="pagination-arrow">&#62;</button>
         </div>
       </section>
 
